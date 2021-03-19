@@ -1,0 +1,25 @@
+
+ 2020.10.29: Real server patch for KR
+  - Group call
+  - rPrep.
+  - Multi-zone
+
+ 2020.10.28: Real server delployment for JP
+  - Group call
+  - rPrep.
+  - Multi-zone
+
+2020.10.23: Eval/Mercury, Titan, Saturn, pluto CMS AM 11:00 ~ 11:30
+ - Peer-to-peer data exchange
+ - multi-zone support : jp, kr
+ - Call recording performance improvement (internal)
+ - UE feature list exchange (internal)
+ - call routing related multi-tenancy (internal)
+
+2020.10.14: Real/Saturn 
+ - origin/hotfix/20201014_hotfix_security_vulnerability
+ - https://bts.linecorp.com/browse/LINERA-10556
+
+2020.10.08: Eval+Real/Saturn - security patch
+
+2020.10.06: Eval/Saturn - add ts/stid in gcallevt

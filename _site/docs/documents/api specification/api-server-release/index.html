@@ -1,0 +1,827 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Server release reason - LINE Planet</title>
+<meta name="description" content="When the call ends, Call Event (on_call_evt_cb) is called. Application can get to know the reason of a call release by investigating related keys.">
+
+
+  <meta name="author" content="LINE Planet">
+  
+  <meta property="article:author" content="LINE Planet">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="LINE Planet">
+<meta property="og:title" content="Server release reason">
+<meta property="og:url" content="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-server-release/">
+
+
+  <meta property="og:description" content="When the call ends, Call Event (on_call_evt_cb) is called. Application can get to know the reason of a call release by investigating related keys.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-09-11T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-server-release/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/jungnam-gwock/TestDoc/feed.xml" type="application/atom+xml" rel="alternate" title="LINE Planet Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/jungnam-gwock/TestDoc/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/jungnam-gwock/TestDoc/">
+          LINE Planet
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/notice/">Notice</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/milestones/">Milestones</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/documents/">Documents</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/jungnam-gwock/TestDoc/assets/images/planet.png" alt="LINE Planet" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">LINE Planet</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>VoIP Platform Service</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/about/" rel="nofollow noopener noreferrer"><i class="far fa-lightbulb" aria-hidden="true"></i><span class="label">About</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/contact/" rel="nofollow noopener noreferrer"><i class="fas fa-envelope" aria-hidden="true"></i><span class="label">Contact</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/tags/" rel="nofollow noopener noreferrer"><i class="fas fa-tags" aria-hidden="true"></i><span class="label">Tag</span></a></li>
+          
+        
+          
+            <li><a href="https://oss.navercorp.com/PlanetKit" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub for PlanetKit</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Server release reason">
+    <meta itemprop="description" content="When the call ends, Call Event (on_call_evt_cb) is called.Application can get to know the reason of a call release by investigating related keys.">
+    <meta itemprop="datePublished" content="2020-09-11T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Server release reason
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>When the call ends, <a href="/jungnam-gwock/TestDoc//documents/api specification/api-server-callevt">Call Event (on_call_evt_cb)</a> is called.<br />
+Application can get to know the reason of a call release by investigating related keys.<br />
+<br /></p>
+
+<p>There are 4 types to describe a release reason.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong><em>Type</em></strong></td>
+      <td><strong><em>Description</em></strong></td>
+      <td><strong><em>Related keys</em></strong></td>
+    </tr>
+    <tr>
+      <td>Simple</td>
+      <td>There are only 6 reasons</td>
+      <td><span style="color:yellow"> <code class="language-plaintext highlighter-rouge">terminate</code> </span></td>
+    </tr>
+    <tr>
+      <td>LINE Planet definition</td>
+      <td>LINE Planet defines the reason of call releases</td>
+      <td><span style="color:yellow"><code class="language-plaintext highlighter-rouge">call_end_reason</code></span></td>
+    </tr>
+    <tr>
+      <td>App definition</td>
+      <td>Application defines the reaon of call releases</td>
+      <td><span style="color:yellow"><code class="language-plaintext highlighter-rouge">user_rel_code</code> </span></td>
+    </tr>
+    <tr>
+      <td>Debug</td>
+      <td>Raw level data related call releases</td>
+      <td><span style="color:yellow"><code class="language-plaintext highlighter-rouge">releaser</code>, <code class="language-plaintext highlighter-rouge">rel_code</code>, <code class="language-plaintext highlighter-rouge">rel_code_str</code> </span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="simple-release-codes">Simple release codes</h3>
+<p>This uses Q.850 codes but only 6 codes to be simple.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong><em>Definition</em></strong></td>
+      <td><strong><em>Q.850 Cause Code</em></strong></td>
+    </tr>
+    <tr>
+      <td>NORMAL_RELEASED</td>
+      <td>16 <br /> <span style="color:yellow">If <code class="language-plaintext highlighter-rouge">duration</code> is greater than 0, <code class="language-plaintext highlighter-rouge">terminate</code> will be 16</span></td>
+    </tr>
+    <tr>
+      <td>CANCELED</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <td>REJECTED</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>BUSY</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>NO_ANSWER</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>else</td>
+      <td>127</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="line-planet-definition-release-codes---call-end-reason">LINE Planet definition release codes - Call End Reason</h3>
+<p>Show release reason in detail.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong><em>Reason</em></strong></td>
+      <td><strong><em>Code value</em></strong></td>
+      <td><strong><em>Description</em></strong></td>
+    </tr>
+    <tr>
+      <td>CALLER_CANCEL</td>
+      <td>1000</td>
+      <td>Caller canceled the call before callee answers</td>
+    </tr>
+    <tr>
+      <td>CALLEE_BUSY</td>
+      <td>1001</td>
+      <td>Callee was already in another calling</td>
+    </tr>
+    <tr>
+      <td>CALLEE_NO_ANSWER</td>
+      <td>1002</td>
+      <td>Callee didn’t answer (Timeout event)</td>
+    </tr>
+    <tr>
+      <td>CALLEE_REJECT</td>
+      <td>1003</td>
+      <td>Callee rejected the call</td>
+    </tr>
+    <tr>
+      <td>CALLER_END</td>
+      <td>1004</td>
+      <td>Caller ended the call during a call</td>
+    </tr>
+    <tr>
+      <td>CALLEE_END</td>
+      <td>1005</td>
+      <td>Callee ended the call during a call</td>
+    </tr>
+    <tr>
+      <td>CALLER_NETWORK_ERROR</td>
+      <td>1010</td>
+      <td>The call ended by a network error at caller</td>
+    </tr>
+    <tr>
+      <td>CALLEE_NETWORK_ERROR</td>
+      <td>1011</td>
+      <td>The call ended by a network error at callee</td>
+    </tr>
+    <tr>
+      <td>CALLER_DEVICE_ERROR</td>
+      <td>1012</td>
+      <td>The call ended by a device error at caller (Speaker, Mic and Camera)</td>
+    </tr>
+    <tr>
+      <td>CALLEE_DEVICE_ERROR</td>
+      <td>1013</td>
+      <td>The call ended by a device error at callee (Speaker, Mic and Camera)</td>
+    </tr>
+    <tr>
+      <td>CALLER_PHONECALL_EVT</td>
+      <td>1014</td>
+      <td>The call ended by a cellular call at caller</td>
+    </tr>
+    <tr>
+      <td>CALLEE_PHONECALL_EVT</td>
+      <td>1015</td>
+      <td>The call ended by a cellular call at callee</td>
+    </tr>
+    <tr>
+      <td>CALLER_SYSTEM_ERROR</td>
+      <td>1016</td>
+      <td>The call ended by a system(OS) triggering error at caller</td>
+    </tr>
+    <tr>
+      <td>CALLEE_SYSTEM_ERROR</td>
+      <td>1017</td>
+      <td>The call ended by a system(OS) triggering  error at callee</td>
+    </tr>
+    <tr>
+      <td>CALLER_AUTH_FAIL</td>
+      <td>1018</td>
+      <td>The authentication for caller fails</td>
+    </tr>
+    <tr>
+      <td>CALLEE_AUTH_FAIL</td>
+      <td>1019</td>
+      <td>The authentication for callee fails</td>
+    </tr>
+    <tr>
+      <td>PUSH_ERROR</td>
+      <td>1020</td>
+      <td>The call notification from an application server returned failure</td>
+    </tr>
+    <tr>
+      <td>SERVER_INTERNAL_ERROR</td>
+      <td>1021</td>
+      <td>The call ended by VoIP server internal error</td>
+    </tr>
+    <tr>
+      <td>CALLER_INTERNAL_ERROR</td>
+      <td>1022</td>
+      <td>The call ended by the caller internal error</td>
+    </tr>
+    <tr>
+      <td>CALLEE_INTERNAL_ERROR</td>
+      <td>1023</td>
+      <td>The call ended by the callee internal error</td>
+    </tr>
+    <tr>
+      <td>OTHER_DEV_IN_USE</td>
+      <td>1024</td>
+      <td>Another device belong to the same user is in a call when making a call</td>
+    </tr>
+    <tr>
+      <td>CALLER_PROTOCOL_ERROR</td>
+      <td>1025</td>
+      <td>The call ended by a protocol error of caller</td>
+    </tr>
+    <tr>
+      <td>CALLEE_PROTOCOL_ERROR</td>
+      <td>1026</td>
+      <td>The call ended by a protocol error of callee</td>
+    </tr>
+    <tr>
+      <td>UNKNOWN_ERROR</td>
+      <td>1100</td>
+      <td>The call ended by a unclassified error</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="application-definition-release-codes">Application definition release codes</h3>
+<p>If application want to define its own release reason,  <code class="language-plaintext highlighter-rouge">user_rel_code</code> can be used.<br />
+When a call ends, application is available to define its own call end reason of string type through PlanetKit SDK. <br /></p>
+
+<p>This string value will be delivered in <code class="language-plaintext highlighter-rouge">user_rel_code</code> to application server from LINE Planet server.<br /></p>
+
+<h3 id="for-debug">For debug</h3>
+<p>LINE Planet can track what happened when a call is released with <code class="language-plaintext highlighter-rouge">releaser</code>, <code class="language-plaintext highlighter-rouge">rel_code</code> and <code class="language-plaintext highlighter-rouge">rel_code_str</code>.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#api" class="page__taxonomy-item" rel="tag">API</a><span class="sep">, </span>
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#on-call-evt-cb" class="page__taxonomy-item" rel="tag">on_call_evt_cb</a><span class="sep">, </span>
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#release-code" class="page__taxonomy-item" rel="tag">release code</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-09-11T00:00:00+09:00">September 11, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Server+release+reason%20https%3A%2F%2Fpages.oss.navercorp.com%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Fapi%2520specification%2Fapi-server-release%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpages.oss.navercorp.com%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Fapi%2520specification%2Fapi-server-release%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fpages.oss.navercorp.com%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Fapi%2520specification%2Fapi-server-release%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/jungnam-gwock/TestDoc/documents/api%20specification/api-server-callevt/" class="pagination--pager" title="Server Callback: Call Event
+">Previous</a>
+    
+    
+      <a href="/jungnam-gwock/TestDoc/documents/function/ftn-call-init-data/" class="pagination--pager" title="Call Init Data
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-data-session/" rel="permalink">Data session API(Draft)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet provides data session for an application to communicate application data.
+For example, an application sends or receives text message to implement...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/" rel="permalink">Shared contents API(Draft)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Contents share api lets an application share time related data with peers. 
+The shared data could be anything but 1KBytes limited size.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-terminology/" rel="permalink">Terminology
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet
+
+VoIP platform name. Often LINE Planet is called as LINE Planet cloud.
+Sometimes this means LINE Planet developers or the team.
+
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-firewall/" rel="permalink">Network firewall settings for LINE Planet
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If an application cannot make it a call or join a conference 
+and disconnected with kitDisconnectReason :: ServiceHttpError, 
+you should check network connec...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/jungnam-gwock/TestDoc/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 LINE Planet. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/jungnam-gwock/TestDoc/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr.min.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-store.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

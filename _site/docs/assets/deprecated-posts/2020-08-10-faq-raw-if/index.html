@@ -1,0 +1,291 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>클라이언트 앱(App, Application)에서 오디오 및 영상 데이터를 획득하는게 가능한가요? 가능하다면 획득한 데이터를 수정하여 상대방에게 전송하는것도 가능한가요? - LINE Planet</title>
+<meta name="description" content="Provide VoIP API">
+
+
+  <meta name="author" content="LINE Planet">
+  
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="LINE Planet">
+<meta property="og:title" content="클라이언트 앱(App, Application)에서 오디오 및 영상 데이터를 획득하는게 가능한가요? 가능하다면 획득한 데이터를 수정하여 상대방에게 전송하는것도 가능한가요?">
+<meta property="og:url" content="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/assets/deprecated-posts/2020-08-10-faq-raw-if/">
+
+
+  <meta property="og:description" content="Provide VoIP API">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/assets/deprecated-posts/2020-08-10-faq-raw-if/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/jungnam-gwock/TestDoc/feed.xml" type="application/atom+xml" rel="alternate" title="LINE Planet Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/jungnam-gwock/TestDoc/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--default">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/jungnam-gwock/TestDoc/">
+          LINE Planet
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/notice/">Notice</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/milestones/">Milestones</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/documents/">Documents</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      <p>PlanetKit 내부적으로 카메라 및 오디오 장치 제어를 하고 있습니다. 하지만 application에서 필요 한 경우 이 데이터를 받아 갈 수 있으며 이를 위해 미디어 데이터 인터페이스를 제공 합니다.</p>
+
+<p>PlanetKit은 다음과 같이 크게 두 가지 타입의 미디어 데이터 인터페이스를 제공 합니다. <br />
+(이름은 플랫폼과 제공하는 API의 언어에 따라 상이합니다.)</p>
+
+<h3 id="modifier">Modifier:</h3>
+<p>디바이스(마이크로폰 혹은 카메라) 또는 상대방으로 부터 받은 미디어를 전송 또는 재생 하기 전에 application 에서 미디어를 수정 할 수 있는 인터페이스.
+Modifier 콜백을 Application에서 구현 하는 경우는, PlanetKit SDK에서 해당 데이터의 리턴을 기다리고 있기 때문에 처리 시간이 길어지는 경우 통화 품질에 악 영향을 줄 수 있으므로 주의가 필요 합니다.</p>
+
+<p>현재 제공 되고 있는 Modifier 미디어 데이터 인터페이스는 다음과 같습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Mic. in</th>
+      <th>Audio out</th>
+      <th>Cam. in</th>
+      <th>View out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>iOS</td>
+      <td>Support</td>
+      <td>Support</td>
+      <td>Support</td>
+      <td>Support</td>
+    </tr>
+    <tr>
+      <td>Android</td>
+      <td>Not-Support</td>
+      <td>Not-Support</td>
+      <td>Support</td>
+      <td>Not-Support</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="receiver">Receiver:</h3>
+<p>디바이스(마이크로폰 혹은 카메라) 또는 상대방으로 부터 받은 미디어를 전송 또는 재생 하는 데이터를 application 에서도 받을 수 있는 인터페이스</p>
+
+<p>현재 제공 되고 있는 Receiver 미디어 데이터 인터페이스는 다음과 같습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Mic. in</th>
+      <th>Audio out</th>
+      <th>Cam. in</th>
+      <th>View out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>iOS</td>
+      <td>Support</td>
+      <td>Support</td>
+      <td>Support</td>
+      <td>Support</td>
+    </tr>
+    <tr>
+      <td>Android</td>
+      <td>Support</td>
+      <td>Support</td>
+      <td>*Not-Support</td>
+      <td>Support</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span style="font-size: 70%; color:green"> (*Android receiver com.in will support soon) </span></p>
+
+<hr />
+
+<p>다음의 문서들을 참고 하시면 도움이 될 수 있습니다.</p>
+<ul>
+  <li><a href="/jungnam-gwock/TestDoc//documents/article/terminology">용어 해설</a>에서는 기본적으로 사용하고 있는 용어를 설명하고 있습니다.</li>
+</ul>
+
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/jungnam-gwock/TestDoc/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 LINE Planet. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/jungnam-gwock/TestDoc/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr.min.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-store.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

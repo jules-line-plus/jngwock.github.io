@@ -1,0 +1,37 @@
+1. ring/tbt/end tone setting with  example:
+-- https://wiki.linecorp.com/display/voip/Guide+to+customize+the+ringback+tone
+-- end tone: 
+---- max 1000 msec length
+
+2. raw data interface docs.
+
+3. FAQ)500 return from saturn/client auth-fail return
+user id에는 dot(.)을 허용하지 않고 있어서 에러가 났습니다. user id 정책에 대해 논의가 필요한 시점인것 같아요. 초기 급하지 않아 최대한 제한했습니다.
+지금 user_id에 허용가능한 character는 아래와 같습니다.
+[a-zA-Z0-9_-]
+
+
+4. No media
+- 음성 no media: 통화 자체적으로 종료(in kit)
+- 영상 no media: 이벤트만 올
+-- PLANETKIT_EVENT_TYPE_MEDIA_NO_SRC (media type : VIDEO/RX)
+
+
+5. group call video resolution 
+* 해상도는 Max 를 의미
+* 숫자는 상대방 뷰 수를 의미
+[데탑]
+Grid view
+~2명 : HD
+3~24인 VGA
+25인~48인 QVGA
+
+[모바일]
+> 안드로이드: 항상 QVGA
+* 안드로이드는 저사양 단말에서 지원 하기 위해 전체적으로 낮춘 케이스 입니다.
+
+> 아이폰
+1~2명: HD
+3명: VGA
+4명이상 QVGA
+

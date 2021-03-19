@@ -1,0 +1,1057 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>PlanetKit System Requirements - LINE Planet</title>
+<meta name="description" content="Contents">
+
+
+  <meta name="author" content="LINE Planet">
+  
+  <meta property="article:author" content="LINE Planet">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="LINE Planet">
+<meta property="og:title" content="PlanetKit System Requirements">
+<meta property="og:url" content="http://localhost:4000/jungnam-gwock/TestDoc/documents/article/art-sys-spec/">
+
+
+  <meta property="og:description" content="Contents">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-02-05T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/jungnam-gwock/TestDoc/documents/article/art-sys-spec/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/jungnam-gwock/TestDoc/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/jungnam-gwock/TestDoc/feed.xml" type="application/atom+xml" rel="alternate" title="LINE Planet Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/jungnam-gwock/TestDoc/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/jungnam-gwock/TestDoc/">
+          LINE Planet
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/notice/">Notice</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/milestones/">Milestones</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/documents/">Documents</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/jungnam-gwock/TestDoc/assets/images/planet.png" alt="LINE Planet" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">LINE Planet</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>VoIP Platform Service</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/about/" rel="nofollow noopener noreferrer"><i class="far fa-lightbulb" aria-hidden="true"></i><span class="label">About</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/contact/" rel="nofollow noopener noreferrer"><i class="fas fa-envelope" aria-hidden="true"></i><span class="label">Contact</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/tags/" rel="nofollow noopener noreferrer"><i class="fas fa-tags" aria-hidden="true"></i><span class="label">Tag</span></a></li>
+          
+        
+          
+            <li><a href="https://oss.navercorp.com/PlanetKit" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub for PlanetKit</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="PlanetKit System Requirements">
+    <meta itemprop="description" content="Contents">
+    <meta itemprop="datePublished" content="2021-02-05T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">PlanetKit System Requirements
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="contents">Contents</h2>
+
+<p><a href="#1-operating-system-requirements">1. Operating System Requirements</a> <br />
+<a href="#2-audio-device-requirements">2. Audio Device Requirements</a><br />
+<a href="#3-video-device-requirements">3. Video Device Requirements</a><br />
+<a href="#4-network-requirements">4. Network Requirements</a><br />
+<!--
+[5. CPU/RAM Requirements](#5-cpuram-requirements)<br>
+--></p>
+
+<h2 id="1-operating-system-requirements">1. Operating System Requirements</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Windows</th>
+      <th>macOS</th>
+      <th>iOS</th>
+      <th>Android</th>
+      <th>Web</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Windows 7</td>
+      <td>macOS 10.11</td>
+      <td>iOS 11.0</td>
+      <td>Android 5.0<br />(min SDK 21)</td>
+      <td><a href="https://oss.navercorp.com/PlanetKit/sample-web#supported-browser">WebPlanetKit Supported Browser</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="android-requires-manifestpermissionread_phone_state">Android requires Manifest.permission.READ_PHONE_STATE</h3>
+<p>PlanetKit assumes cellular phone call has more priority than LINE Planet call - both 1:1 call and group call.
+PlanetKit will end the LINE Planet call when occurs a cellular phone call in the middle of the LINE Planet call.
+So the android application requires the <code class="language-plaintext highlighter-rouge">Manifest.permission.READ_PHONE_STATE</code> permission.</p>
+
+<p>If the application Do Not have the <code class="language-plaintext highlighter-rouge">Manifest.permission.READ_PHONE_STATE</code> permission, 
+PlanetKit cannot detect that a cellular phone call occurs or not.</p>
+
+<h2 id="2-audio-device-requirements">2. Audio Device Requirements</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Windows</th>
+      <th>macOS</th>
+      <th>iOS</th>
+      <th>Android</th>
+      <th>Web</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Speaker</td>
+      <td>Mandatory</td>
+      <td>Equipped</td>
+      <td>Equipped</td>
+      <td>Mandatory</td>
+      <td>Option</td>
+    </tr>
+    <tr>
+      <td>Microphone</td>
+      <td>Option</td>
+      <td>Option</td>
+      <td>Equipped</td>
+      <td>Option</td>
+      <td>Mandatory</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Supported speaker
+    <ul>
+      <li>Built-in, USB audio device or Bluetooth</li>
+    </ul>
+  </li>
+  <li>Supported microphone
+    <ul>
+      <li>Built-in, USB audio device or Bluetooth</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="permission-to-access-audio-device">Permission to access audio device</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Required permission</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>iOS</td>
+      <td>NSMicrophoneUsageDescription key <br />in your app’s Info.plist file</td>
+      <td><a href="https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios">Apple Developer</a></td>
+    </tr>
+    <tr>
+      <td>Android</td>
+      <td>Manifest.permission.RECORD_AUDIO</td>
+      <td><a href="https://developer.android.com/reference/android/Manifest.permission">Android Developer</a></td>
+    </tr>
+    <tr>
+      <td>macOS</td>
+      <td>NSMicrophoneUsageDescription key <br />in your app’s Info.plist file</td>
+      <td><a href="https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_macos">Apple Developer</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3-video-device-requirements">3. Video Device Requirements</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Windows</th>
+      <th>macOS</th>
+      <th>iOS</th>
+      <th>Android</th>
+      <th>Web</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Camera</td>
+      <td>Option</td>
+      <td>Option</td>
+      <td>Equipped</td>
+      <td>Option</td>
+      <td>Option</td>
+    </tr>
+    <tr>
+      <td>Graphic card</td>
+      <td>n/a</td>
+      <td><a href="https://support.apple.com/en-us/HT202239">Metal supported graphic card</a></td>
+      <td>n/a</td>
+      <td>n/a</td>
+      <td>n/a</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Supported camera: Built-in or USB webcam</li>
+</ul>
+
+<h3 id="supported-camera-image-format">Supported camera image format</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Windows</th>
+      <th>macOS</th>
+      <th>iOS</th>
+      <th>Android</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Raw image</td>
+      <td>YUV (I420) <br />RGB</td>
+      <td>YUV (I420, NV12) <br />RGB</td>
+      <td>YUV (I420, NV12) <br />RGB</td>
+      <td>YUV (I420, NV12)</td>
+    </tr>
+    <tr>
+      <td>Compressed image</td>
+      <td>MJPEG(from 3.0)</td>
+      <td>Not Support</td>
+      <td>Not Support</td>
+      <td>Not Support</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="permission-to-access-camera-device">Permission to access camera device</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Required permission</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>iOS</td>
+      <td>NSCameraUsageDescription key <br />in your app’s Info.plist file</td>
+      <td><a href="https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios">Apple Developer</a></td>
+    </tr>
+    <tr>
+      <td>Android</td>
+      <td>Manifest.permission.CAMERA</td>
+      <td><a href="https://developer.android.com/reference/android/Manifest.permission">Android Developer</a></td>
+    </tr>
+    <tr>
+      <td>macOS</td>
+      <td>NSCameraUsageDescription key <br />in your app’s Info.plist file</td>
+      <td><a href="https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_macos">Apple Developer</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 
+아래 내용은 사용자에게 가이드 할 os 설정 내용
+ Windows : [Turn on app permissions for your camera in Windows 10](https://support.microsoft.com/en-us/windows/turn-on-app-permissions-for-your-camera-in-windows-10-87ebc757-1f87-7bbf-84b5-0686afb6ca6b)  |
+ -->
+
+<blockquote>
+  <p>Web PlanetKit 
+will shows pop up when need to access camera permission</p>
+</blockquote>
+
+<!-- 
+### Graphic card requirement
+<span style="font-size: 100%; color:orange"> Mac </span>
+device must equip 
+<span style="font-size: 100%; color:orange"> Metal supported graphic card</span>.
+Please check [Apple Support page](https://support.apple.com/en-us/HT202239) to show metal equipped Mac.
+-->
+
+<h2 id="4-network-requirements">4. Network Requirements</h2>
+
+<p>Network characteristics are not fixed and LINE Planet controls audio and video quality 
+to adapt the network within a call by reasoning network condition.<br />
+For example, If there are packet lost, LINE Planet protects media packets by generating FEC packets to keep call quality.<br />
+Also if there are speed limitation, LINE Planet lowers the video bitrate to avoid the network congestion.<br /></p>
+
+<p>Following table shows 
+<span style="font-size: 100%; color:yellow">
+the uni-directional required network speed(kbps) under not lossy networks.
+</span></p>
+
+<blockquote>
+  <p>Please note that this is the minimum requirement for a LINE Planet call. 
+LINE Planet drives better call quality in the higher speed network.</p>
+</blockquote>
+
+<h3 id="11-call">1:1 Call</h3>
+<!-- DTX Factor = 0.8/ 소수점 이하 올림
+audio (2g,3g,4g,5g,wifi,ether) = (12.8, 19.2, 19.2, 25.6, 25.6, 25.6 )
+video (2g,3g,4g,5g,wifi,ether) = (50, 100, 100, 100, 100, 400)
+REFERL: jup_config_list.h
+-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Terminal Network</th>
+      <th>Audio Call</th>
+      <th>Video Call</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2G</td>
+      <td>13</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>3G</td>
+      <td>20</td>
+      <td>120</td>
+    </tr>
+    <tr>
+      <td>4G</td>
+      <td>20</td>
+      <td>120</td>
+    </tr>
+    <tr>
+      <td>5G</td>
+      <td>26</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <td>WIFI</td>
+      <td>26</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <td>Ethernet</td>
+      <td>26</td>
+      <td>426</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>We recommend that try <br />
+1:1 video call in the <span style="font-size: 100%; color:orange">1.5Mbps/1.5Mbps (up/down)</span> network.</p>
+</blockquote>
+
+<h3 id="group-call">Group Call</h3>
+<!-- SVC Video : 1:1 Video Call 에서 Thumbnail 50 더함.-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Terminal Network</th>
+      <th>Audio Conference (Mixing)</th>
+      <th>Video Conference(SVC)<br />(For one video stream)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2G</td>
+      <td>13</td>
+      <td>113</td>
+    </tr>
+    <tr>
+      <td>3G</td>
+      <td>20</td>
+      <td>170</td>
+    </tr>
+    <tr>
+      <td>4G</td>
+      <td>20</td>
+      <td>170</td>
+    </tr>
+    <tr>
+      <td>5G</td>
+      <td>26</td>
+      <td>176</td>
+    </tr>
+    <tr>
+      <td>WIFI</td>
+      <td>26</td>
+      <td>176</td>
+    </tr>
+    <tr>
+      <td>Ethernet</td>
+      <td>26</td>
+      <td>476</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>The proper speed depends on how many videos are streamed on one client.<br />
+For example, we recommend that try <br />
+group call in the <span style="font-size: 100%; color:orange">2Mbps/2Mbps(Up/Down) network</span> in 4 participants joined video conference.</p>
+</blockquote>
+
+<h3 id="presentation">Presentation</h3>
+<p>Presentation(Screen share) video is usually HD video resolution. <br />
+This requires <span style="font-size: 100%; color:orange">1.6Mbps/1.6Mbps (Up/Down)</span> network.<br />
+When a presentation is started, the presentation video has higher priority than the camera video. 
+So the camera video resolution could be resized to the smaller resolution.
+<!-- only presentation: 1.5Mbps ~ 2Mbps --></p>
+
+<h3 id="video-resolution-and-bandwidth">Video resolution and bandwidth</h3>
+
+<p>The video resolution is controlled by the network speed. <br />
+<span style="font-size: 100%; color:yellow">
+The uni-directional minimum network speed(kbps) for each resolution under not lossy networks are following.
+</span></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Video Call Resolution</th>
+      <th>1:1 Video Call</th>
+      <th>Video Conference(SVC)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>QVGA</td>
+      <td>50</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>VGA</td>
+      <td>100</td>
+      <td>250</td>
+    </tr>
+    <tr>
+      <td>HD</td>
+      <td>1000</td>
+      <td>1150</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
+Following CPU includes i3/i5/i7/i9 and AMD equivalent.
+https://wiki.linecorp.com/pages/viewpage.action?spaceKey=voip&title=PLANETKIT+SUPPORT+DEVICE+TEST+FOR+DESKTOP
+-->
+<!-- audio 1:1 call windows min은 os 설치 기준, recommended 는 약간 올림 -->
+<!-- audio 1:1 call mac min = recommeded =  os 설치 기준 -->
+<!-- audio group call 은 1:1 콜과 같음(믹싱일때) 먹싱은 테스트 필요 -->
+<!-- 
+## 5. CPU/RAM Requirements
+iOS and (mobile) Android depend on Operating System version.
+Also WebPlanetKit depends on WebRTC.<br>
+<br>
+Please note that below tables consider only desktop environments.
+
+### 1:1 call
+
+| Audio Call | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | 1 GHz x Single Core | 2.5 GHz x Dual Core |
+| Recommended CPU | 2.5 GHz x Dual Core | 2.5 GHz x Dual Core |
+| Recommended RAM | 2GB | 4GB |
+
+| Video Call | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | TBD | TBD |
+| Recommended CPU | TBD | TBD |
+| Recommended RAM | TBD | TBD |
+
+### Group call
+
+| Audio Conference  | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | 1 GHz x Single Core | 2.5 GHz x Dual Core |
+| Recommended CPU | 2.5 GHz x Dual Core | 2.5 GHz x Dual Core |
+| Recommended RAM | 2GB | 4GB |
+
+| Video Conference  | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | TBD | TBD |
+| Recommended CPU | TBD | TBD |
+| Recommended RAM | TBD | TBD |
+-->
+
+<h2 id="history">History</h2>
+<p>2021-02-05 The first version <br /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#android" class="page__taxonomy-item" rel="tag">Android</a><span class="sep">, </span>
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#ios" class="page__taxonomy-item" rel="tag">iOS</a><span class="sep">, </span>
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#macos" class="page__taxonomy-item" rel="tag">macOS</a><span class="sep">, </span>
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#planetkit" class="page__taxonomy-item" rel="tag">PlanetKit</a><span class="sep">, </span>
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#requirements" class="page__taxonomy-item" rel="tag">requirements</a><span class="sep">, </span>
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#windows" class="page__taxonomy-item" rel="tag">Windows</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-02-05T00:00:00+09:00">February 5, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=PlanetKit+System+Requirements%20http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Farticle%2Fart-sys-spec%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Farticle%2Fart-sys-spec%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Farticle%2Fart-sys-spec%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/jungnam-gwock/TestDoc/documents/function/ftn-presentation/" class="pagination--pager" title="Presentation - Screen share
+">Previous</a>
+    
+    
+      <a href="/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect/" class="pagination--pager" title="Client Disconnect Reason - kitDisconnectReason
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-data-session/" rel="permalink">Data session API
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet provides data session for an application to communicate application data.
+For example, an application sends or receives text message to implement...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/" rel="permalink">Shared contents API
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Contents share api lets an application share time related data with peers. 
+The shared data could be anything but 1KBytes limited size.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-terminology/" rel="permalink">Terminology
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet
+
+VoIP platform name. Often LINE Planet is called as LINE Planet cloud.
+Sometimes this means LINE Planet developers or the team.
+
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-firewall/" rel="permalink">Network firewall settings for LINE Planet
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If an application cannot make it a call or join a conference 
+and disconnected with kitDisconnectReason :: ServiceHttpError, 
+you should check network connec...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/jungnam-gwock/TestDoc/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 LINE Planet. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/jungnam-gwock/TestDoc/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr.min.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-store.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1587 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/" rel="alternate" type="text/html" /><updated>2021-03-08T20:26:42+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/feed.xml</id><title type="html">LINE Planet</title><subtitle>Provide VoIP API</subtitle><author><name>LINE Planet</name></author><entry><title type="html">Data session API(Draft)</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-data-session/" rel="alternate" type="text/html" title="Data session API(Draft)" /><published>2021-03-26T00:00:00+09:00</published><updated>2021-03-26T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-data-session</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-data-session/">&lt;p&gt;LINE Planet provides data session for an application to communicate application data.&lt;br /&gt;
+For example, an application sends or receives text message to implement text chatting during a conference.&lt;br /&gt;
+Note that data session is only available after a call setup is completed or join in a conference.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Application must define data communication protocol and LINE Planet just provides data session(s) 
+as a communication channel for application’s data communication protocol.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 70%; color:deepskyblue&quot;&gt;
+LINE Planet is a real time communication platform. &lt;br /&gt;
+And the real time communication on the internet is not guaranteed because packets 
+could be lost or delayed depends on current network condition.
+These network impairments affect real time communication quality. Even 
+sometimes the call(or conference) cannot be continued.&lt;br /&gt;
+Also heavy traffic could cause various network impairments.&lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;When an application uses data session,
+please perceive data communication makes lower voice communication or video communication quality&lt;/em&gt;&lt;/strong&gt;
+.&lt;br /&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Supported service type&lt;/th&gt;
+      &lt;th&gt;Minimum SDK version&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1:1 call, group call&lt;/td&gt;
+      &lt;td&gt;PlanetKit 3.2 for iOS, macOS and Android&lt;br /&gt; PlanetKit 3.3 for Windows&lt;br /&gt; WebPlanetKit NOT Supported&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!--  refrence
+https://wiki.linecorp.com/display/voip/AMP+core+API+for+data+session
+--&gt;
+
+&lt;h2 id=&quot;data-session-apis&quot;&gt;Data session APIs&lt;/h2&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 70%; color:green&quot;&gt;
+An API signature describing this page is different with the real code’s. 
+Please refer API reference documents or codes in implementation.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Data session apis are directional - Send and Receive. For each side, 
+application should request a data session with pre-defined stream id. 
+The ‘pre-defined’ means the stream id value is discussed between the both side before implementation stage.&lt;/p&gt;
+
+&lt;h3 id=&quot;about-stream-id&quot;&gt;About Stream ID&lt;/h3&gt;
+&lt;p&gt;A stream id is an identifier of data communication defined by application in a design stage. 
+This is not dynamic.
+If A receiver cannot handle a specific stream id, must stop to use it.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 100%; color:deepskyblue;&quot;&gt;
+Available Stream ID Range: 100 ~ 1000
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Application must choose stream ids within above available stream id range.&lt;/p&gt;
+
+&lt;p&gt;Requesting both sides for the one stream id is available.&lt;/p&gt;
+
+&lt;h3 id=&quot;api-summary&quot;&gt;API Summary&lt;/h3&gt;
+&lt;p&gt;Related APIs(including event callbacks) are following:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Sender side&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;makeSendDataSession&lt;/td&gt;
+      &lt;td&gt;Make one data session for a stream id&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dataSessionSend&lt;/td&gt;
+      &lt;td&gt;Send data&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dataSessionChangeDestination&lt;/td&gt;
+      &lt;td&gt;Change destination&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;isSupportedDataSession&lt;/td&gt;
+      &lt;td&gt;Check data session compatibility in 1:1 call&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Receiver side&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;evtDataSessionIncoming&lt;/td&gt;
+      &lt;td&gt;New data has arrived through a data session mapped a stream id&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;makeRecvDataSession&lt;/td&gt;
+      &lt;td&gt;Make one data session to receive&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;unsupportDataSession&lt;/td&gt;
+      &lt;td&gt;Un-support the stream id&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;data-session-lifetime&quot;&gt;Data session lifetime&lt;/h3&gt;
+
+&lt;p&gt;Once a data sessions is made, it is active until the call(or conference) session is ended.&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;data-session-streaming-type&quot;&gt;Data session streaming type&lt;/h3&gt;
+&lt;p&gt;Data session has 3 streaming types. Application should choose which type to use depends on application data characteristics.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Type&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Reliable message&lt;/td&gt;
+      &lt;td&gt;Lost packets will be retransmitted. &lt;br /&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtDataSessionRecved&lt;/code&gt; is called when every one message is aggregated. So it is called as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dataSessionSend&lt;/code&gt; calling times.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Reliable bytes&lt;/td&gt;
+      &lt;td&gt;Lost packets will be retransmitted. &lt;br /&gt;SDK fragments data if the data is larger than MTU. However will not aggregate packets on the receiver side. Application should aggregate fragmented packets.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;UnReliable bytes&lt;/td&gt;
+      &lt;td&gt;Lost packets are not retransmitted. &lt;br /&gt;SDK only fragments data such as ‘Reliable byte’.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;planetkitcallplanetkitconference-apis&quot;&gt;PlanetKitCall(PlanetKitConference) APIs&lt;/h3&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 120%; color:yellowgreen;&quot;&gt;
+Sender side&lt;br /&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;makeSendDataSession(streamId, type, cbException ,completion…)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Request the new data session to send belong to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;streamId&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@&lt;a href=&quot;#about-stream-id&quot;&gt;streamId&lt;/a&gt;: stream identifier defined by application&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@&lt;a href=&quot;#data-session-streaming-type&quot;&gt;type&lt;/a&gt;: data streaming type&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@cbException(streamId, exceptionType, …): Called when exception occur&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@completion(streamId, …): Completion callback. Application must use the stream id after this completion.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Following table shows the sender side exception list. 
+Please refer and do proper actions on the application layer.
+Note that too much traffic could lower the audio and video communication quality.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Type&lt;/th&gt;
+      &lt;th&gt;Description&lt;br /&gt;Direction&lt;/th&gt;
+      &lt;th&gt;Application should do&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TooLong&lt;br /&gt;QueuedData&lt;br /&gt;(Triggered=TRUE)&lt;/td&gt;
+      &lt;td&gt;Detected that the data traffic is too much&lt;/td&gt;
+      &lt;td&gt;Application should stop or lower send bitrate&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TooLong&lt;br /&gt;QueuedData&lt;br /&gt;(Triggered=FALSE)&lt;/td&gt;
+      &lt;td&gt;Network condition is being better before&lt;/td&gt;
+      &lt;td&gt;Available more send traffic&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;UnspportedDataSessionStreamId&lt;/td&gt;
+      &lt;td&gt;Released when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unsupportDataSession&lt;/code&gt; is called on the receiver side&lt;/td&gt;
+      &lt;td&gt;Do not use that stream id&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Please note that the more &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TooLongQueuedData&lt;/code&gt; event would the lower voice and video quality.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;dataSessionSend(streamId, …)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Send data&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@streamId: stream id&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;dataSessionChangeDestination(streamId, userId, completion, …)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Change destination. Default means broadcast.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@streamId: stream id&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@userId: user id. Null means broadcast.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@completion: Completion callback. Changed destination will be applied after this callback.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style=&quot;font-size: 120%; color:yellowgreen;&quot;&gt;
+Receiver side&lt;br /&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;evtDataSessionIncoming (streamId, …)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;When arrive a new data via the data session that had have made and sent by the sender side, a receiver side is notified by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtDataSessionIncoming&lt;/code&gt;.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@&lt;a href=&quot;#about-stream-id&quot;&gt;streamId&lt;/a&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;streamId&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requestSendDataSession()&lt;/code&gt; called by the sender&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In a conference, &lt;br /&gt;
+late joiners will also receive &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtDataSessionIncoming&lt;/code&gt; when receiving the data after join flow completion.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 70%;&quot;&gt;
+ The late joiner means who joins after someone has already started a data stream
+ &lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;makeRecvDataSession(streamId, cbRecved, cbException, completion, …)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Request the new data session to receive belong to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;streamId&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@&lt;a href=&quot;#about-stream-id&quot;&gt;streamId&lt;/a&gt;: stream identifier defined by application. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtDataSessionIncoming&lt;/code&gt; delivers this from peer’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;streamId&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requestSendDataSession&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@cbRecved(streamId, data, …) : Received data callback&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@cbException(streamId, exceptionType, …): Called shen exception occur&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@completion(streamId, …): Completion callback. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cbRecved&lt;/code&gt; is called after this completion.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;unsupportDataSession(streamId, …)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Call this when an application receive unknown &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;streamId&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtDataSessionIncoming&lt;/code&gt;. This function lets sender stop to send.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;@&lt;a href=&quot;#about-stream-id&quot;&gt;streamId&lt;/a&gt;: stream identifier defined by application. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtDataSessionIncoming&lt;/code&gt; delivers this from peer’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;streamId&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addSendDataSession()&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;data-session-compatibility&quot;&gt;Data session compatibility&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;1:1 call
+    &lt;ul&gt;
+      &lt;li&gt;isSupportedDataSession() provides whether if the peer supports data session or not.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Group call
+    &lt;ul&gt;
+      &lt;li&gt;Participant info describes whether if a participant supports data session or not&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Even the peer(s) has data session capability, capability of handling a specific stream id is another compatibility issue.
+This issue is about handling of a not implemented stream id old versions.&lt;/p&gt;
+
+&lt;p&gt;Compatibility pre-check of specific stream id could be solved by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rejectRecvDataSession()&lt;/code&gt;.
+Or implement reliable stream id data session that is available from the first version.&lt;/p&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2021-03-31 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">LINE Planet provides data session for an application to communicate application data. For example, an application sends or receives text message to implement text chatting during a conference. Note that data session is only available after a call setup is completed or join in a conference.</summary></entry><entry><title type="html">Shared contents API(Draft)</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/" rel="alternate" type="text/html" title="Shared contents API(Draft)" /><published>2021-03-26T00:00:00+09:00</published><updated>2021-03-26T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/">&lt;p&gt;Contents share api lets an application share time related data with peers. 
+The shared data could be anything but 1KBytes limited size.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Supported service type&lt;/th&gt;
+      &lt;th&gt;Minimum SDK version&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1:1 call, group call&lt;/td&gt;
+      &lt;td&gt;PlanetKit 3.2 for iOS, macOS and Android&lt;br /&gt; PlanetKit 3.3 for Windows&lt;br /&gt; WebPlanetKit NOT Supported&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;contents-share-api&quot;&gt;Contents share API&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Function&lt;/th&gt;
+      &lt;th&gt;Counterpart event&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;setSharedContents(Data)&lt;br /&gt; setExclusiveSharedContents(Data)&lt;/td&gt;
+      &lt;td&gt;evtPeerSetSharedContents&lt;br /&gt; evtPeerSetExclusiveSharedContents&lt;/td&gt;
+      &lt;td&gt;Write shared-data as a specific value&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;unsetSharedContents(Data)&lt;br /&gt; unsetExclusiveSharedContents(Data)&lt;/td&gt;
+      &lt;td&gt;evtPeerUnsetSharedContents&lt;br /&gt; evtPeerUnsetExclusiveSharedContents&lt;/td&gt;
+      &lt;td&gt;Clean the shared-data&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Above &lt;span style=&quot;color:orange&quot;&gt; contents share apis are available only after
+a call setup is completed - both 1:1 call and group call&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once someone starts to share data via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setSharedContents()&lt;/code&gt;, others are notified by 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerSetSharedContents&lt;/code&gt; that delivers following:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Field&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Application user id&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;service-id&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Application service id&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;application-data&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data-length&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Data itself and size&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elapsed-ms-from-last-set&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;elapsed millisecond time from the shared data is modified&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elapsed-ms-from-last-set&lt;/code&gt; field lets an application calculate how long time passed from the last modified time.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:orange&quot;&gt;
+Please note that only &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setExclusiveSharedContents()&lt;/code&gt; caller can modify the shared data.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The prefix “Exclusive” means the shared data exists only one instance during the room (or the call). &lt;br /&gt;
+If one shared data is required for all in the room, use the exclusive API pair.
+Or if all participants require its own data to be shared, use the un-exclusive API pair.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using both exclusive API and un-exclusive API does not cause any problem.&lt;/p&gt;
+
+&lt;h2 id=&quot;example---raise-hands-before-talking&quot;&gt;Example - raise hands before talking&lt;/h2&gt;
+
+&lt;p&gt;This is a very simple case to show the usage of the contents share apis.&lt;br /&gt;
+We hope to understand what the ‘Exclusive` is and how to design shared data structure by this example.&lt;br /&gt;
+&lt;br /&gt;
+An application plans to implement ‘raise hands’ before someone talks by using contents share apis.&lt;br /&gt;
+And the flag saying ‘raise hands’ is &lt;span style=&quot;color:orange&quot;&gt;valid only 3 seconds&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 150%; color:lightblue&quot;&gt;
+The first case 
+&lt;/span&gt;
+assumes anyone can raise hands at one time, so multiple participants can raise hands.&lt;/p&gt;
+
+&lt;p&gt;1) Shared data structure ={&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flag&lt;/code&gt;}.&lt;br /&gt;
+2) Anyone who want to talk, call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setSharedContents(flag=TRUE)&lt;/code&gt;&lt;br /&gt;
+3) Everyone knows who want to talk via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerSetSharedContents&lt;/code&gt;.&lt;br /&gt;
+4) When a new participant joins 4 seconds later, he(or she) will be notified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerSetSharedContents&lt;/code&gt;s. 
+And only participants belong to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elapsed-ms-from-last-set&lt;/code&gt; &amp;lt; 3000 msec are handled as ‘raise hands’.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 150%; color:lightblue&quot;&gt;
+The second case 
+&lt;/span&gt;
+assumes only one talker can raise hands at one time, so only one participant can raise hands.&lt;br /&gt;
+This case requires a master participant and just assume user-m is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt; of the master.&lt;/p&gt;
+
+&lt;p&gt;1) Shared data structure ={&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h-user-id&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flag&lt;/code&gt;}.&lt;br /&gt;
+2) Master calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setExclusiveSharedContents(h-user-id=NULL, flag=FALSE)&lt;/code&gt;.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here after, others calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setExclusiveSharedContents()&lt;/code&gt; is ignored.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Anyone who want to talk, call &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/function/ftn-sendshortdata/&quot;&gt;sendShortData()&lt;/a&gt; to user-m.&lt;br /&gt;
+4) Master picks only one participant(assume user-a).&lt;br /&gt;
+5) Master calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setExclusiveSharedContents(h-user-id=user-a, flag=TRUE)&lt;/code&gt;.&lt;br /&gt;
+6) Everyone knows user-a(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h-user-id&lt;/code&gt;) want to talk(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flag=TRUE&lt;/code&gt;) via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerSetExclusiveSharedContents&lt;/code&gt;. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the step 6, the caller &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerSetExclusiveSharedContents&lt;/code&gt; is the user-m and this is different someone who raises hands.&lt;/p&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2021-03-31 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">Contents share api lets an application share time related data with peers. The shared data could be anything but 1KBytes limited size.</summary></entry><entry><title type="html">Terminology</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-terminology/" rel="alternate" type="text/html" title="Terminology" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-terminology</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-terminology/">&lt;h4 id=&quot;line-planet&quot;&gt;LINE Planet&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+VoIP platform name. Often LINE Planet is called as LINE Planet cloud.&lt;br /&gt;
+Sometimes this means LINE Planet developers or the team.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;application&quot;&gt;Application&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+A client application and server application that uses LINE Planet cloud.&lt;br /&gt;
+Sometimes this means service developers or a team.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;sla&quot;&gt;SLA&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Service Layer Agreement. &lt;br /&gt;
+An application requires SLA key to integration LINE Planet.&lt;br /&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;planetkit&quot;&gt;PlanetKit&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Client SDK to access LINE Planet servers.&lt;br /&gt;
+Integrating LINE Planet means integrating PlanetKit.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;caller-initiator&quot;&gt;Caller, Initiator&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Terminal device who makes a new call or end user(human).
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;callee-responder&quot;&gt;Callee, Responder&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Counterpart of the caller. Caller may want to call with a Callee.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;appclient&quot;&gt;AppClient&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Client application integrating PlanetKit SDK.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;appserver&quot;&gt;AppServer&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Server application that has connectivity to LINE Planet server.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;session&quot;&gt;Session&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+A call identification.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;service-id&quot;&gt;Service ID&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Planet can identify services with Service ID.&lt;br /&gt;
+All application must define its own Service ID with below acceptable character set.&lt;br /&gt;
+&lt;/span&gt;
+&lt;span style=&quot;font-size: 90%; color:orange&quot;&gt;
+    letters[&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a-zA-Z&lt;/code&gt;], digits[&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0-9&lt;/code&gt;], hyphens(“-“) and periods(“.”)&lt;br /&gt;
+    length limitation: 64 bytes
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;user-id&quot;&gt;User ID&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+The service subscriber identification. All User IDs belong to one Service ID must be unique.&lt;br /&gt;
+The User ID accepted by LINE Planet must be defined by below character set.&lt;br /&gt;
+&lt;/span&gt;
+&lt;span style=&quot;font-size: 90%; color:orange&quot;&gt;
+    letters[&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a-zA-Z&lt;/code&gt;], digits[&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0-9&lt;/code&gt;], hyphens(“-“) and underscores(“&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_&lt;/code&gt;”)&lt;br /&gt;
+    length limitation: 64 bytes
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;room-id&quot;&gt;Room ID&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Group call instance identification. Application must join with the same room id to communication each other.&lt;br /&gt;
+The accepted character set is same with the above User ID.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;cellular-network&quot;&gt;Cellular network&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Mobile network. For example 2G, 3G, 4G or 5G.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;cellular-call&quot;&gt;Cellular call&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+General phone call through mobile network.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;planetkit-call-line-planet-call&quot;&gt;PlanetKit call, LINE Planet call&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+VoIP call through PlanetKit. This call may use Wifi network or data of mobile network.&lt;br /&gt;
+The data plan that is subscribing by user could affect the PlanetKit call quality.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;confernce-group-call-and-room&quot;&gt;Confernce, Group call and room&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+We don’t distinguish above 3 words.
+When 3 or more users hope to communicate, they can hold conferenc or group call.
+And creating a conference or group call means that a room is creating.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;evt-prefix-event-and-event-parameters&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evt&lt;/code&gt; prefix, Event and Event parameters&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
+Event means a notification from PlanetKit to an application.
+In the generality of cases, two events are involved when an application calls one PlanetKit API - a local event and a remote event.
+The local event reports the result of the called PlanetKit API, and the remote event informs triggering something by a peer.&lt;br /&gt;
+Event parameters are related data generated by PlanetKit when a event has occured.
+&lt;/span&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="terminology" /><summary type="html">LINE Planet VoIP platform name. Often LINE Planet is called as LINE Planet cloud. Sometimes this means LINE Planet developers or the team.</summary></entry><entry><title type="html">Client Disconnect Reason - kitDisconnectReason</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect/" rel="alternate" type="text/html" title="Client Disconnect Reason - kitDisconnectReason" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect/">&lt;!-- 
+wiki: https://wiki.linecorp.com/display/voip/Disconnect+Reason
+for web: https://wiki.linecorp.com/display/voip/Web+PlanetKit+Disconnect+Reason
+--&gt;
+&lt;p&gt;PlanetKit provides &lt;span style=&quot;font-size: 150%; color:orange&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kitDisconnectReason&lt;/code&gt;&lt;/span&gt; 
+for an application to get to know the call disconnection reason.&lt;/p&gt;
+
+&lt;p&gt;The application could react such as showing a message 
+depends on the following reason codes.&lt;/p&gt;
+
+&lt;p&gt;The “1:1 Call” column means this can be shown when a 1:1 call is disconnected.&lt;/p&gt;
+
+&lt;p&gt;The “Conference” column means this can be shown when a user leaves from a conference call.&lt;/p&gt;
+
+&lt;p&gt;“Initiator” means a caller and “Responder” means a callee in 1:1 call.&lt;/p&gt;
+
+&lt;h2 id=&quot;normal-scenario&quot;&gt;Normal scenario&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Reason&lt;/th&gt;
+      &lt;th&gt;1:1 Call&lt;/th&gt;
+      &lt;th&gt;Conference&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Normal&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Disconnected the call without exceptions&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Cancel&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Initiator disconnects the call before the responder answers&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Busy&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Responder is calling&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NoAnswer&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Responder doesn’t answer. Initiator waits for the answer for 60 seconds.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Decline&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;1:1 Call&lt;/strong&gt;: Responder rejects a call&lt;br /&gt; &lt;strong&gt;Conference&lt;/strong&gt;: The old joined conference is declined when join to the same conference room. &lt;br /&gt;(ex. Re-join after crash)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;MultiDevInUse&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;The same id pair(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;service-id&lt;/code&gt;) is calling in another device&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;MultiDevAnswer&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Responder using the same id pair(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;service-id&lt;/code&gt;) answered for the call in another device&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;MultiDevDecline&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Responder using the same id pair(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;service-id&lt;/code&gt;) declined for the call in another device&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AlreadyGotACall&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;The initiator or the participant already has a incoming call but not received push yet&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;exception-cases---terminal&quot;&gt;Exception cases - Terminal&lt;/h2&gt;
+
+&lt;p&gt;The following reasons are generated on a terminal such as local network environment, device status or PlanetKit internal.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Reason&lt;/th&gt;
+      &lt;th&gt;1:1 Call&lt;/th&gt;
+      &lt;th&gt;Conference&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AudioTxNoSrc&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Audio source (i.e mic) has not sent any audio data for a while&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NetworkUnavailable&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Network is unavailable to keep a call.&lt;br /&gt; Please refer &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/function/ftn-net-unavail/&quot;&gt;NetworkUnavailableEvent&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;InternalError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;PlanetKit disconnected the call because of internal error&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CellCall&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Received cellular call during the PlanetKit call&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NoPermission&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;(Only WebPlanetKit case. from 3.1.6)&lt;br /&gt;User doesn’t have permission to use device(microphone, camera)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;exception-cases---line-planet-server&quot;&gt;Exception cases - LINE Planet Server&lt;/h2&gt;
+
+&lt;p&gt;The following reasons are generated within LINE Planet server cloud.
+“LINE Planet GW” means LINE Planet Gateway that interfaces between AppServer and LINE Planet internal servers.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Reason&lt;/th&gt;
+      &lt;th&gt;1:1 Call&lt;/th&gt;
+      &lt;th&gt;Conference&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;PushError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;LINE Planet GW failed to call &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/api specification/api-server-notify&quot;&gt;Notify&lt;/a&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notify_cb&lt;/code&gt; returned a failure. &lt;br /&gt;Please check AppServer or Notify url.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ServerInternalError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Server disconnected a call because of internal error&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AuthError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Authentication failure&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ReleasedCall&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;The call was already released.&lt;br /&gt; Ex) Initiator already canceled.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;RoomIsFull&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;The number of participants in this room is full&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AloneKickOut&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Server kicks out a user when alone so long time stays in a conference room&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NoMediaPacket&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;(Only WebPlanetKit case. from 3.1.6)&lt;br /&gt;WebPlanetKit GW could not receive any media packets&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ServiceSLAKeyError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Invalid SLA Key&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ServiceInvalidID&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Unacceptable character is used in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;service-id&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt;.&lt;br /&gt; Please refer &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/terminology/#service-id&quot;&gt;Terminology&lt;/a&gt;.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ServiceMaintenance&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Under maintenance&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ServiceBusy&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;LINE Planet GW is busy for the now&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ServiceHttpError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Could not HTTP request.&lt;br /&gt;Please check user network environment.&lt;br /&gt;1. Firewall &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/art-firewall&quot;&gt;Network firewall settings for LINE Planet&lt;/a&gt;&lt;br /&gt;2. Client vaccine program&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ServiceInternalError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;LINE Planet GW internal error&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;user-defined-error&quot;&gt;User defined error&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Reason&lt;/th&gt;
+      &lt;th&gt;1:1 Call&lt;/th&gt;
+      &lt;th&gt;Conference&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;UserError&lt;/td&gt;
+      &lt;td&gt;Y&lt;/td&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;PlanetKit user(application) disconnected the call with user’s error release code&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2021-03-04 Add NoPermission and NoMediaPacket case &lt;br /&gt;
+2020-12-11 Modify description about Delcine for conference case&lt;br /&gt;
+2020-11-24 Location movement: Article –&amp;gt; API Specification &lt;br /&gt;
+2020-11-19 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="API Specification" /><category term="kitDisconnectReason" /><summary type="html">PlanetKit provides kitDisconnectReason for an application to get to know the call disconnection reason.</summary></entry><entry><title type="html">Network firewall settings for LINE Planet</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-firewall/" rel="alternate" type="text/html" title="Network firewall settings for LINE Planet" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-firewall</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-firewall/">&lt;p&gt;If an application cannot make it a call or join a conference 
+and disconnected with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kitDisconnectReason :: ServiceHttpError&lt;/code&gt;, 
+you should check network connection or network firewall settings.&lt;/p&gt;
+
+&lt;h2 id=&quot;line-planet-firewall-rules&quot;&gt;LINE Planet firewall rules&lt;/h2&gt;
+
+&lt;p&gt;Please refer the following table to check your network firewall.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 130%; color:deepskyblue&quot;&gt;
+PlanetKit
+&lt;/span&gt;
+&lt;span style=&quot;font-size: 100%; color:deepskyblue&quot;&gt;
+(iOS, macOS, Android and Windows)
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Protocol&lt;/th&gt;
+      &lt;th&gt;Source&lt;/th&gt;
+      &lt;th&gt;Destination&lt;/th&gt;
+      &lt;th&gt;Ports&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TCP&lt;/td&gt;
+      &lt;td&gt;Any&lt;/td&gt;
+      &lt;td&gt;https://voipnx-saturn.line-apps.com&lt;br /&gt; 147.92.144.0/24&lt;/td&gt;
+      &lt;td&gt;443&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TCP&lt;/td&gt;
+      &lt;td&gt;Any&lt;/td&gt;
+      &lt;td&gt;110.93.154.0/24&lt;br /&gt; 110.93.157.0/24&lt;br /&gt; 110.93.156.0/24&lt;br /&gt; 147.92.179.0/24&lt;br /&gt; 147.92.147.0/24&lt;br /&gt; 147.92.166.0/24&lt;br /&gt; 203.104.162.0/24&lt;br /&gt; 203.104.164.0/24&lt;/td&gt;
+      &lt;td&gt;10001~10020&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;UDP&lt;/td&gt;
+      &lt;td&gt;Any&lt;/td&gt;
+      &lt;td&gt;110.93.154.0/24&lt;br /&gt; 110.93.157.0/24&lt;br /&gt; 110.93.156.0/24&lt;br /&gt; 147.92.179.0/24&lt;br /&gt; 147.92.147.0/24&lt;br /&gt; 147.92.166.0/24&lt;br /&gt; 203.104.162.0/24&lt;br /&gt; 203.104.164.0/24&lt;/td&gt;
+      &lt;td&gt;10001~30000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size: 130%; color:deepskyblue&quot;&gt;
+WebPlanetKit
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Protocol&lt;/th&gt;
+      &lt;th&gt;Source&lt;/th&gt;
+      &lt;th&gt;Destination&lt;/th&gt;
+      &lt;th&gt;Ports&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TCP&lt;/td&gt;
+      &lt;td&gt;Any&lt;/td&gt;
+      &lt;td&gt;voipnx-wtp-kr.line-apps.com&lt;br /&gt; 223.130.192.0/24&lt;/td&gt;
+      &lt;td&gt;12000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;UDP&lt;/td&gt;
+      &lt;td&gt;Any&lt;/td&gt;
+      &lt;td&gt;110.93.157.0/24&lt;br /&gt; 110.93.156.0/24&lt;/td&gt;
+      &lt;td&gt;20000~30000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2021-03-04 Apply scale up and WebPlanetKit&lt;br /&gt;
+2021-02-05 Apply scale up&lt;br /&gt;
+2020-11-18 The first version&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="kitDisconnectReason" /><summary type="html">If an application cannot make it a call or join a conference and disconnected with kitDisconnectReason :: ServiceHttpError, you should check network connection or network firewall settings.</summary></entry><entry><title type="html">PlanetKit System Requirements</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-sys-spec/" rel="alternate" type="text/html" title="PlanetKit System Requirements" /><published>2021-02-05T00:00:00+09:00</published><updated>2021-02-05T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-sys-spec</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-sys-spec/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;#1-operating-system-requirements&quot;&gt;1. Operating System Requirements&lt;/a&gt; &lt;br /&gt;
+&lt;a href=&quot;#2-audio-device-requirements&quot;&gt;2. Audio Device Requirements&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#3-video-device-requirements&quot;&gt;3. Video Device Requirements&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#4-network-requirements&quot;&gt;4. Network Requirements&lt;/a&gt;&lt;br /&gt;
+&lt;!--
+[5. CPU/RAM Requirements](#5-cpuram-requirements)&lt;br&gt;
+--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;1-operating-system-requirements&quot;&gt;1. Operating System Requirements&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Windows&lt;/th&gt;
+      &lt;th&gt;macOS&lt;/th&gt;
+      &lt;th&gt;iOS&lt;/th&gt;
+      &lt;th&gt;Android&lt;/th&gt;
+      &lt;th&gt;Web&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Windows 7&lt;/td&gt;
+      &lt;td&gt;macOS 10.11&lt;/td&gt;
+      &lt;td&gt;iOS 11.0&lt;/td&gt;
+      &lt;td&gt;Android 5.0&lt;br /&gt;(min SDK 21)&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://oss.navercorp.com/PlanetKit/sample-web#supported-browser&quot;&gt;WebPlanetKit Supported Browser&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;android-requires-manifestpermissionread_phone_state&quot;&gt;Android requires Manifest.permission.READ_PHONE_STATE&lt;/h3&gt;
+&lt;p&gt;PlanetKit assumes cellular phone call has more priority than LINE Planet call - both 1:1 call and group call.
+PlanetKit will end the LINE Planet call when occurs a cellular phone call in the middle of the LINE Planet call.
+So the android application requires the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Manifest.permission.READ_PHONE_STATE&lt;/code&gt; permission.&lt;/p&gt;
+
+&lt;p&gt;If the application Do Not have the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Manifest.permission.READ_PHONE_STATE&lt;/code&gt; permission, 
+PlanetKit cannot detect that a cellular phone call occurs or not.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-audio-device-requirements&quot;&gt;2. Audio Device Requirements&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Windows&lt;/th&gt;
+      &lt;th&gt;macOS&lt;/th&gt;
+      &lt;th&gt;iOS&lt;/th&gt;
+      &lt;th&gt;Android&lt;/th&gt;
+      &lt;th&gt;Web&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Speaker&lt;/td&gt;
+      &lt;td&gt;Mandatory&lt;/td&gt;
+      &lt;td&gt;Equipped&lt;/td&gt;
+      &lt;td&gt;Equipped&lt;/td&gt;
+      &lt;td&gt;Mandatory&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Microphone&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+      &lt;td&gt;Equipped&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+      &lt;td&gt;Mandatory&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Supported speaker
+    &lt;ul&gt;
+      &lt;li&gt;Built-in, USB audio device or Bluetooth&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Supported microphone
+    &lt;ul&gt;
+      &lt;li&gt;Built-in, USB audio device or Bluetooth&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;permission-to-access-audio-device&quot;&gt;Permission to access audio device&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Required permission&lt;/th&gt;
+      &lt;th&gt;Note&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;iOS&lt;/td&gt;
+      &lt;td&gt;NSMicrophoneUsageDescription key &lt;br /&gt;in your app’s Info.plist file&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios&quot;&gt;Apple Developer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Android&lt;/td&gt;
+      &lt;td&gt;Manifest.permission.RECORD_AUDIO&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://developer.android.com/reference/android/Manifest.permission&quot;&gt;Android Developer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;macOS&lt;/td&gt;
+      &lt;td&gt;NSMicrophoneUsageDescription key &lt;br /&gt;in your app’s Info.plist file&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_macos&quot;&gt;Apple Developer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;3-video-device-requirements&quot;&gt;3. Video Device Requirements&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Windows&lt;/th&gt;
+      &lt;th&gt;macOS&lt;/th&gt;
+      &lt;th&gt;iOS&lt;/th&gt;
+      &lt;th&gt;Android&lt;/th&gt;
+      &lt;th&gt;Web&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Camera&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+      &lt;td&gt;Equipped&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+      &lt;td&gt;Option&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Graphic card&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://support.apple.com/en-us/HT202239&quot;&gt;Metal supported graphic card&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Supported camera: Built-in or USB webcam&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;supported-camera-image-format&quot;&gt;Supported camera image format&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Windows&lt;/th&gt;
+      &lt;th&gt;macOS&lt;/th&gt;
+      &lt;th&gt;iOS&lt;/th&gt;
+      &lt;th&gt;Android&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Raw image&lt;/td&gt;
+      &lt;td&gt;YUV (I420) &lt;br /&gt;RGB&lt;/td&gt;
+      &lt;td&gt;YUV (I420, NV12) &lt;br /&gt;RGB&lt;/td&gt;
+      &lt;td&gt;YUV (I420, NV12) &lt;br /&gt;RGB&lt;/td&gt;
+      &lt;td&gt;YUV (I420, NV12)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Compressed image&lt;/td&gt;
+      &lt;td&gt;MJPEG(from 3.0)&lt;/td&gt;
+      &lt;td&gt;Not Support&lt;/td&gt;
+      &lt;td&gt;Not Support&lt;/td&gt;
+      &lt;td&gt;Not Support&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;permission-to-access-camera-device&quot;&gt;Permission to access camera device&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Required permission&lt;/th&gt;
+      &lt;th&gt;Note&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;iOS&lt;/td&gt;
+      &lt;td&gt;NSCameraUsageDescription key &lt;br /&gt;in your app’s Info.plist file&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios&quot;&gt;Apple Developer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Android&lt;/td&gt;
+      &lt;td&gt;Manifest.permission.CAMERA&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://developer.android.com/reference/android/Manifest.permission&quot;&gt;Android Developer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;macOS&lt;/td&gt;
+      &lt;td&gt;NSCameraUsageDescription key &lt;br /&gt;in your app’s Info.plist file&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_macos&quot;&gt;Apple Developer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- 
+아래 내용은 사용자에게 가이드 할 os 설정 내용
+ Windows : [Turn on app permissions for your camera in Windows 10](https://support.microsoft.com/en-us/windows/turn-on-app-permissions-for-your-camera-in-windows-10-87ebc757-1f87-7bbf-84b5-0686afb6ca6b)  |
+ --&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Web PlanetKit 
+will shows pop up when need to access camera permission&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!-- 
+### Graphic card requirement
+&lt;span style=&quot;font-size: 100%; color:orange&quot;&gt; Mac &lt;/span&gt;
+device must equip 
+&lt;span style=&quot;font-size: 100%; color:orange&quot;&gt; Metal supported graphic card&lt;/span&gt;.
+Please check [Apple Support page](https://support.apple.com/en-us/HT202239) to show metal equipped Mac.
+--&gt;
+
+&lt;h2 id=&quot;4-network-requirements&quot;&gt;4. Network Requirements&lt;/h2&gt;
+
+&lt;p&gt;Network characteristics are not fixed and LINE Planet controls audio and video quality 
+to adapt the network within a call by reasoning network condition.&lt;br /&gt;
+For example, If there are packet lost, LINE Planet protects media packets by generating FEC packets to keep call quality.&lt;br /&gt;
+Also if there are speed limitation, LINE Planet lowers the video bitrate to avoid the network congestion.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Following table shows 
+&lt;span style=&quot;font-size: 100%; color:yellow&quot;&gt;
+the uni-directional required network speed(kbps) under not lossy networks.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Please note that this is the minimum requirement for a LINE Planet call. 
+LINE Planet drives better call quality in the higher speed network.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;11-call&quot;&gt;1:1 Call&lt;/h3&gt;
+&lt;!-- DTX Factor = 0.8/ 소수점 이하 올림
+audio (2g,3g,4g,5g,wifi,ether) = (12.8, 19.2, 19.2, 25.6, 25.6, 25.6 )
+video (2g,3g,4g,5g,wifi,ether) = (50, 100, 100, 100, 100, 400)
+REFERL: jup_config_list.h
+--&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Terminal Network&lt;/th&gt;
+      &lt;th&gt;Audio Call&lt;/th&gt;
+      &lt;th&gt;Video Call&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2G&lt;/td&gt;
+      &lt;td&gt;13&lt;/td&gt;
+      &lt;td&gt;63&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3G&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;120&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4G&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;120&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5G&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;126&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;WIFI&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;126&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ethernet&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;426&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We recommend that try &lt;br /&gt;
+1:1 video call in the &lt;span style=&quot;font-size: 100%; color:orange&quot;&gt;1.5Mbps/1.5Mbps (up/down)&lt;/span&gt; network.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;group-call&quot;&gt;Group Call&lt;/h3&gt;
+&lt;!-- SVC Video : 1:1 Video Call 에서 Thumbnail 50 더함.--&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Terminal Network&lt;/th&gt;
+      &lt;th&gt;Audio Conference (Mixing)&lt;/th&gt;
+      &lt;th&gt;Video Conference(SVC)&lt;br /&gt;(For one video stream)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2G&lt;/td&gt;
+      &lt;td&gt;13&lt;/td&gt;
+      &lt;td&gt;113&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3G&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;170&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4G&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;170&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5G&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;176&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;WIFI&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;176&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ethernet&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;476&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The proper speed depends on how many videos are streamed on one client.&lt;br /&gt;
+For example, we recommend that try &lt;br /&gt;
+group call in the &lt;span style=&quot;font-size: 100%; color:orange&quot;&gt;2Mbps/2Mbps(Up/Down) network&lt;/span&gt; in 4 participants joined video conference.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;presentation&quot;&gt;Presentation&lt;/h3&gt;
+&lt;p&gt;Presentation(Screen share) video is usually HD video resolution. &lt;br /&gt;
+This requires &lt;span style=&quot;font-size: 100%; color:orange&quot;&gt;1.6Mbps/1.6Mbps (Up/Down)&lt;/span&gt; network.&lt;br /&gt;
+When a presentation is started, the presentation video has higher priority than the camera video. 
+So the camera video resolution could be resized to the smaller resolution.
+&lt;!-- only presentation: 1.5Mbps ~ 2Mbps --&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;video-resolution-and-bandwidth&quot;&gt;Video resolution and bandwidth&lt;/h3&gt;
+
+&lt;p&gt;The video resolution is controlled by the network speed. &lt;br /&gt;
+&lt;span style=&quot;font-size: 100%; color:yellow&quot;&gt;
+The uni-directional minimum network speed(kbps) for each resolution under not lossy networks are following.
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Video Call Resolution&lt;/th&gt;
+      &lt;th&gt;1:1 Video Call&lt;/th&gt;
+      &lt;th&gt;Video Conference(SVC)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;QVGA&lt;/td&gt;
+      &lt;td&gt;50&lt;/td&gt;
+      &lt;td&gt;100&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;VGA&lt;/td&gt;
+      &lt;td&gt;100&lt;/td&gt;
+      &lt;td&gt;250&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HD&lt;/td&gt;
+      &lt;td&gt;1000&lt;/td&gt;
+      &lt;td&gt;1150&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!--
+Following CPU includes i3/i5/i7/i9 and AMD equivalent.
+https://wiki.linecorp.com/pages/viewpage.action?spaceKey=voip&amp;title=PLANETKIT+SUPPORT+DEVICE+TEST+FOR+DESKTOP
+--&gt;
+&lt;!-- audio 1:1 call windows min은 os 설치 기준, recommended 는 약간 올림 --&gt;
+&lt;!-- audio 1:1 call mac min = recommeded =  os 설치 기준 --&gt;
+&lt;!-- audio group call 은 1:1 콜과 같음(믹싱일때) 먹싱은 테스트 필요 --&gt;
+&lt;!-- 
+## 5. CPU/RAM Requirements
+iOS and (mobile) Android depend on Operating System version.
+Also WebPlanetKit depends on WebRTC.&lt;br&gt;
+&lt;br&gt;
+Please note that below tables consider only desktop environments.
+
+### 1:1 call
+
+| Audio Call | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | 1 GHz x Single Core | 2.5 GHz x Dual Core |
+| Recommended CPU | 2.5 GHz x Dual Core | 2.5 GHz x Dual Core |
+| Recommended RAM | 2GB | 4GB |
+
+| Video Call | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | TBD | TBD |
+| Recommended CPU | TBD | TBD |
+| Recommended RAM | TBD | TBD |
+
+### Group call
+
+| Audio Conference  | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | 1 GHz x Single Core | 2.5 GHz x Dual Core |
+| Recommended CPU | 2.5 GHz x Dual Core | 2.5 GHz x Dual Core |
+| Recommended RAM | 2GB | 4GB |
+
+| Video Conference  | Windows | macOS |
+| --- | --- | --- |
+| Minimum CPU | TBD | TBD |
+| Recommended CPU | TBD | TBD |
+| Recommended RAM | TBD | TBD |
+--&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2021-02-05 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="PlanetKit" /><category term="iOS" /><category term="Android" /><category term="Windows" /><category term="macOS" /><category term="requirements" /><summary type="html">Contents</summary></entry><entry><title type="html">Presentation - Screen share</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-presentation/" rel="alternate" type="text/html" title="Presentation - Screen share" /><published>2021-01-18T00:00:00+09:00</published><updated>2021-01-18T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-presentation</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-presentation/">&lt;p&gt;Presentation means a presenter shares his or her screen to show a material such as slides to the other call peer(s).&lt;/p&gt;
+
+&lt;p&gt;PlanetKit tries HD video to presentation so the clients should to be under good network.
+Please check &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/art-sys-spec/#4-network-requirements&quot;&gt;Network Requirements&lt;/a&gt; 
+for the detail information.&lt;/p&gt;
+
+&lt;h2 id=&quot;presentation-life-time&quot;&gt;Presentation life time&lt;/h2&gt;
+
+&lt;p&gt;A presenter decides when the presentation starts or ends by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;startMyScreenShare()&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stopMyScreenShare()&lt;/code&gt;.&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Presenter API&lt;/th&gt;
+      &lt;th&gt;Counterpart event&lt;/th&gt;
+      &lt;th&gt;Counterpart render API&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;startMyScreenShare()&lt;br /&gt;Result: compStarted()&lt;/td&gt;
+      &lt;td&gt;evtPeerScreenShareStarted&lt;/td&gt;
+      &lt;td&gt;addPeerScreenShareView()&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;stopMyScreenShare()&lt;br /&gt;Result: compStopped()&lt;/td&gt;
+      &lt;td&gt;evtPeerScreenShareStopped&lt;/td&gt;
+      &lt;td&gt;removePeerScreenShareView()&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Counterpart means a peer in a 1:1 call or participants in a group call.&lt;br /&gt;
+After being notified by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerScreenShareStarted&lt;/code&gt; that a presentation has started, 
+the counterpart must create a view instance and call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addPeerScreenShareView()&lt;/code&gt; to let PlanetKit render.&lt;/p&gt;
+
+&lt;h2 id=&quot;controls-by-peers&quot;&gt;Controls by peers&lt;/h2&gt;
+
+&lt;p&gt;Once a presentation is started, peer or participants will be automatically shared the presentation video.
+After that if peer or participants hope to pause or resume the presenting video, 
+can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pausePeerScreenShare()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;resumePeerScreenShare()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;desktop-consideration&quot;&gt;Desktop consideration&lt;/h2&gt;
+&lt;p&gt;A desktop application can choose monitor screen or only application window to share.
+So the application on Windows and macOS should decide which screen will be shared before calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;startMyScreenShare()&lt;/code&gt;.
+PlanetKit provides the available screen list for the application. Please check this via sample codes.&lt;/p&gt;
+
+&lt;h2 id=&quot;11-call&quot;&gt;1:1 call&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-1x1-start.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-1x1-end.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;group-call&quot;&gt;Group call&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-NxN-start.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-NxN-end.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-NxN-lj.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;reason-to-stop-screen-share&quot;&gt;Reason to stop screen share&lt;/h2&gt;
+&lt;p&gt;When a presenter calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stopMyScreenShare()&lt;/code&gt;, it can add a reason that is defined by application requirements. 
+If so, the counter part event &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerScreenShareStopped&lt;/code&gt; delivers the reason value. &lt;br /&gt;
+The reason is integer type, so an application should share the definition among multiple platform applications or different application codes.&lt;br /&gt;
+If do not use reason field, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerScreenShareStopped&lt;/code&gt; delivers &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-1&lt;/code&gt; or FALSE value in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasReason&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2021-02-05 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">Presentation means a presenter shares his or her screen to show a material such as slides to the other call peer(s).</summary></entry><entry><title type="html">AppServer Role</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-appserver-role/" rel="alternate" type="text/html" title="AppServer Role" /><published>2020-12-29T00:00:00+09:00</published><updated>2020-12-29T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-appserver-role</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-appserver-role/">&lt;p&gt;To setup a 1:1 call or a group call, 
+AppServer should make a callee(or participants) perceive. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;PlanetKit call requires proper information to communicate, 
+so AppServer should to deliver some fields depends on call type.&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#11-call&quot;&gt;1:1 Call&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#group-call&quot;&gt;Group Call&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;11-call---cc_param&quot;&gt;1:1 Call - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cc_param&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;color:orange&quot;&gt;
+AppServer MUST deliver &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cc_param&lt;/code&gt; to a callee that is copied from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;param&lt;/code&gt; in 
+&lt;a href=&quot;/jungnam-gwock/TestDoc//documents/api specification/api-server-notify&quot;&gt;Notify (notify_cb)&lt;/a&gt;.&lt;br /&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Data from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notfy_cb&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;Type&lt;/th&gt;
+      &lt;th&gt;Corresponding push payload key&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;param&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;String&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cc_param&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
+You can use mobile push system to accomplish this as almost mobile apps do.&lt;br /&gt;
+&lt;br /&gt;
+Here we assume you use APNs and FCM push system.&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;      
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;cc_param&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;You&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;can&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`notify_cb()`*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Also you can define application’s push data using other fields from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notify_cb&lt;/code&gt; 
+to handle application requirements such as showing caller’s information or caller’s call type.&lt;br /&gt;
+&lt;br /&gt;
+Here show examples.&lt;br /&gt;
+“app_” prefix means defined by application which means they are not required by PlanetKit call setup.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;APNs example&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_caller_sid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;linecorp.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from_service_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_caller_uid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1111&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from_user_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_callee_sid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;linecorp.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to_service_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_callee_uid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2222&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to_user_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_stid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;SampleUserData&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;stid&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_call_type&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;cc_param&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;... param value in notify cb ....&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_alert&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;alert&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Incoming call from ios_test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;sound&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;call.caf&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+GCM/FCM example&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_caller_sid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;linecorp.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from_service_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_caller_uid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1111&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from_user_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_callee_sid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;linecorp.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to_service_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_callee_uid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2222&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to_user_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_stid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;SampleUserData&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;stid&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;app_call_type&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;notify_cb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;cc_param&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;... param value in notify cb ....&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;group-call&quot;&gt;Group Call&lt;/h2&gt;
+&lt;p&gt;Unlike 1:1 call, there is no requirements for AppServer to setup a group call.&lt;br /&gt;
+Just be sure that all participants should share the same service id and conference room id to communicate in the same room.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;An application can share them via the application specific channel without involving handling of 
+&lt;a href=&quot;/jungnam-gwock/TestDoc//documents//api specification/api-server-gcallevt&quot;&gt;Group Call Event (on_gcall_evt_cb)&lt;/a&gt;
+depends on an application group call setup flow.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If an application hope to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;on_gcall_evt_cb&lt;/code&gt;, 
+the service id and room id can be copied from following fields&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;service id: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;svc_id&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;room id: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2020-12-29 Add description and move location to “Article”&lt;br /&gt;
+2020-08-07 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="requirements" /><summary type="html">To setup a 1:1 call or a group call, AppServer should make a callee(or participants) perceive.</summary></entry><entry><title type="html">Client API Specification</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-client-api/" rel="alternate" type="text/html" title="Client API Specification" /><published>2020-12-09T00:00:00+09:00</published><updated>2020-12-09T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-client-api</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-client-api/">&lt;p&gt;Please check the API reference to get to know how to call PlanetKit APIs in detail.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Platform&lt;/th&gt;
+      &lt;th&gt;API Reference&lt;/th&gt;
+      &lt;th&gt;Note&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;iOS&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://pages.oss.navercorp.com/PlanetKit/sample-ios/docs/iOS/index.html&quot;&gt;iOS API Reference&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Android&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://oss.navercorp.com/PlanetKit/sample-android/blob/master/PlanetKit-Javadoc/index.md&quot;&gt;Android API Reference&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Deployment via &lt;a href=&quot;https://repo.linecorp.com/service/rest/repository/browse/releases/com/linecorp/planetkit/planetkit/&quot;&gt;Linecorp Maven&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;macOS&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://pages.oss.navercorp.com/PlanetKit/sample-macos/docs/macOS/index.html&quot;&gt;macOS API Reference&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Windows&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://oss.navercorp.com/PlanetKit/sample-windows/tree/master/include&quot;&gt;Please check header declaration&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Web&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://pages.oss.navercorp.com/PlanetKit/sample-web/&quot;&gt;WebPlanetKit API Reference&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Please check API Reference to show supported browser information.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Required environment including the minimum supportable OS can be shown in 
+&lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/art-sys-requirements&quot;&gt;System Requirements&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2020-12-31 Move Minimum Supportable OS to System requirements&lt;br /&gt;
+2020-12-09 Add Minimum Supportable OS and Note columns&lt;br /&gt;
+2020-11-24 The First version&lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="API Specification" /><category term="API" /><category term="PlanetKit" /><summary type="html">Please check the API reference to get to know how to call PlanetKit APIs in detail.</summary></entry><entry><title type="html">Information to send push notifications</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/sample/sample-push/" rel="alternate" type="text/html" title="Information to send push notifications" /><published>2020-11-30T00:00:00+09:00</published><updated>2020-11-30T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/sample/sample-push</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/sample/sample-push/">&lt;h2 id=&quot;common&quot;&gt;Common&lt;/h2&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:yellow&quot;&gt; Service ID &lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ios-apns&quot;&gt;iOS: APNs&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apple Push Notification service SSL (Sandbox &amp;amp; Production) certificate for your application.
+    &lt;ol&gt;
+      &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns&quot;&gt;Create certificate for your sample app&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Generate .p12 file from the certificate&lt;/li&gt;
+      &lt;li&gt;Send the .p12 file and its password to us&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:yellow&quot;&gt; Please make sure that the push certificate MUST be the same with the build certificate.&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;android-and-web-fcm&quot;&gt;Android and Web: FCM&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Server key and Sender ID
+    &lt;ol&gt;
+      &lt;li&gt;Login to your Firebase console &lt;a href=&quot;https://console.firebase.google.com/&quot;&gt;https://console.firebase.google.com/&lt;/a&gt; and select your Firebase project&lt;/li&gt;
+      &lt;li&gt;Go to Setting &amp;gt; Project Setting &amp;gt; Cloud messaging&lt;br /&gt;
+  &lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/fcm_setting.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;2020-11-30 Add Sample &lt;br /&gt;
+2020-08-11 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Sample" /><category term="Sample" /><category term="APNs" /><category term="FCM" /><summary type="html">Common</summary></entry></feed>

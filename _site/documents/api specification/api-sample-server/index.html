@@ -1,0 +1,1021 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Sample Server API Specification - LINE Planet</title>
+<meta name="description" content="Development Guide">
+
+
+  <meta name="author" content="LINE Planet">
+  
+  <meta property="article:author" content="LINE Planet">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="LINE Planet">
+<meta property="og:title" content="Sample Server API Specification">
+<meta property="og:url" content="http://localhost:4000/jungnam-gwock/TestDoc/documents/api%20specification/api-sample-server/">
+
+
+  <meta property="og:description" content="Development Guide">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-12T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/jungnam-gwock/TestDoc/documents/api%20specification/api-sample-server/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/jungnam-gwock/TestDoc/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/jungnam-gwock/TestDoc/feed.xml" type="application/atom+xml" rel="alternate" title="LINE Planet Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/jungnam-gwock/TestDoc/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/jungnam-gwock/TestDoc/">
+          LINE Planet
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/notice/">Notice</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/milestones/">Milestones</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/documents/">Documents</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/jungnam-gwock/TestDoc/assets/images/planet.png" alt="LINE Planet" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">LINE Planet</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>VoIP Platform Service</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/about/" rel="nofollow noopener noreferrer"><i class="far fa-lightbulb" aria-hidden="true"></i><span class="label">About</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/contact/" rel="nofollow noopener noreferrer"><i class="fas fa-envelope" aria-hidden="true"></i><span class="label">Contact</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/tags/" rel="nofollow noopener noreferrer"><i class="fas fa-tags" aria-hidden="true"></i><span class="label">Tag</span></a></li>
+          
+        
+          
+            <li><a href="https://oss.navercorp.com/PlanetKit" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub for PlanetKit</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Sample Server API Specification">
+    <meta itemprop="description" content="Development Guide">
+    <meta itemprop="datePublished" content="2020-08-12T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Sample Server API Specification
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="development-guide">Development Guide</h2>
+
+<h3 id="environment">Environment</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Environment</th>
+      <th>as_base_url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Evaluation</td>
+      <td><span style="font-size: 100%; color:orange"> https://voipnx-as.line-apps-rc.com </span></td>
+    </tr>
+    <tr>
+      <td>Real</td>
+      <td><span style="font-size: 100%; color:orange"> https://voipnx-as.line-apps.com </span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="naming-rule">Naming Rule</h3>
+<ul>
+  <li>url : under_score<br /></li>
+  <li>query params : under_score<br /></li>
+  <li>response object(json) : camelCase<br /></li>
+</ul>
+
+<h3 id="error-handling">Error Handling</h3>
+
+<blockquote>
+  <p>Application Error Code Table</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>HttpStatusCode</th>
+      <th>Application Error Code</th>
+      <th>Reason</th>
+      <th>Message</th>
+      <th>Data</th>
+      <th>Note</th>
+      <th>For testing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200</td>
+      <td>461</td>
+      <td>INVALID_ID</td>
+      <td> </td>
+      <td> </td>
+      <td>reserved</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>463</td>
+      <td>INVALID_STATE</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>520</td>
+      <td>UNDER_MAINTENANCE</td>
+      <td>under maintenance</td>
+      <td>start, end</td>
+      <td> </td>
+      <td>O</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">#</span><span class="w"> </span><span class="err">Example</span><span class="w">
+</span><span class="err">#</span><span class="w"> </span><span class="err">http</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">{</span><span class="err">status:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w"> </span><span class="err">code:</span><span class="s2">"520"</span><span class="p">,</span><span class="w"> </span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"UNDER_MAINTENANCE"</span><span class="p">,</span><span class="w"> </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490762455349</span><span class="p">,</span><span class="w"> </span><span class="nl">"end"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490762455350</span><span class="p">}}</span></code></pre></figure>
+
+<blockquote>
+  <p>Error Handling Guide</p>
+</blockquote>
+
+<p>1 . Check http status error code<br /></p>
+<ul>
+  <li>Client error code (4XX)<br /></li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Example:</span><span class="w">
+  </span><span class="err">#</span><span class="w"> </span><span class="err">http</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="mi">400</span><span class="w">
+  </span><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"parameter is null"</span><span class="p">,</span><span class="nl">"code"</span><span class="p">:</span><span class="s2">"400"</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:{</span><span class="nl">"requestContext"</span><span class="p">:</span><span class="s2">"may not be null"</span><span class="p">},</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1490261690087</span><span class="p">}</span><span class="w">
+  </span></code></pre></figure>
+
+<ul>
+  <li>
+    <ul>
+      <li>Server side code (5XX)</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">example</span><span class="w">
+  </span><span class="err">#</span><span class="w"> </span><span class="err">http</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="mi">500</span><span class="w">
+  </span><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"cannot support VoIP"</span><span class="p">,</span><span class="nl">"code"</span><span class="p">:</span><span class="s2">"500"</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1490320867281</span><span class="p">}</span><span class="w">
+  </span></code></pre></figure>
+
+<p>2 . Check application error code (jsend code) ↔ http status code &lt; 400<br /></p>
+<ul>
+  <li>http status is O.K</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">example</span><span class="w">
+  </span><span class="err">#</span><span class="w"> </span><span class="err">http</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">but</span><span class="w"> </span><span class="err">jsend's</span><span class="w"> </span><span class="err">error</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="mi">461</span><span class="w">
+  </span><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"Caller's app doesn't support VoIP"</span><span class="p">,</span><span class="nl">"code"</span><span class="p">:</span><span class="s2">"461"</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1490320867281</span><span class="p">}</span><span class="w">
+
+  </span><span class="err">#</span><span class="w"> </span><span class="err">http</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">but</span><span class="w"> </span><span class="err">jsend's</span><span class="w"> </span><span class="err">error</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="mi">531</span><span class="w">
+  </span><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"Mercury unavailable."</span><span class="p">,</span><span class="nl">"code"</span><span class="p">:</span><span class="s2">"531"</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1490320867281</span><span class="p">}</span><span class="w">
+  </span></code></pre></figure>
+
+<h2 id="api-for-client">API for Client</h2>
+
+<h3 id="protocol-spec">Protocol Spec</h3>
+<blockquote>
+  <p>HTTP RESTful API</p>
+</blockquote>
+
+<ul>
+  <li>Request: HTTP, RESTful Style, Json body</li>
+  <li>Request Method: GET or POST
+    <ul>
+      <li>case GET
+*case POST
+        <ul>
+          <li>Request body is raw JSON string. When you send raw JSON, you should add <code class="language-plaintext highlighter-rouge">Content-Type: application/json</code> to request header.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Response: JSON (jsend)</li>
+</ul>
+
+<blockquote>
+  <p>Mandatory Headers</p>
+</blockquote>
+
+<p>Accept</p>
+<ul>
+  <li>application/json (UTF-8)</li>
+</ul>
+
+<h3 id="register-device">Register device</h3>
+<p>To register device</p>
+<ul>
+  <li>If you want multi-device simulation, call <code class="language-plaintext highlighter-rouge">register_device</code> with different <code class="language-plaintext highlighter-rouge">app_type</code>
+i.e) iPhone + android</li>
+</ul>
+
+<blockquote>
+  <p>Method &amp; URI</p>
+</blockquote>
+
+<ul>
+  <li>Method: GET</li>
+  <li>URI: ${as_base_url}/v1/register_device</li>
+</ul>
+
+<blockquote>
+  <p>Query</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>user_id</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>user id</td>
+    </tr>
+    <tr>
+      <td>service_id</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>service id</td>
+    </tr>
+    <tr>
+      <td>region</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>registration country code (<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> or <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">alpha-3</a> ) <br /> i.e) JP, JPN</td>
+    </tr>
+    <tr>
+      <td>app_type</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>application type which service provider defines <br /> i.e) IOS, ANDROID, DESKTOPWIN, DESKTOPMAC</td>
+    </tr>
+    <tr>
+      <td>app_ver</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>application version <br /> i.e) 1.0.0, 1.0.0-RELEASE</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Response</p>
+</blockquote>
+
+<ul>
+  <li>N/A</li>
+</ul>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">curl</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">request</span> <span class="no">GET</span> <span class="s1">'http://voipnx-as.line-apps-beta.com:10712/v1/register_device?user_id=to&amp;service_id=voip.com&amp;region=KR&amp;app_type=IOS&amp;app_ver=1.0.0&amp;='</span> <span class="p">\</span>
+<span class="o">--</span><span class="n">header</span> <span class="s1">'Accept: application/json'</span>
+
+<span class="p">{</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span><span class="p">,</span>
+    <span class="s2">"data"</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1580218637059</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="update-notification-token">Update notification token</h3>
+
+<p>To update device notification token(a.k.a device token)</p>
+
+<blockquote>
+  <p>Method &amp; URI</p>
+</blockquote>
+
+<ul>
+  <li>Method: GET</li>
+  <li>URI: ${as_base_url}/v1/update_notification_token</li>
+</ul>
+
+<blockquote>
+  <p>Query</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>user_id</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>user id</td>
+    </tr>
+    <tr>
+      <td>service_id</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>service id</td>
+    </tr>
+    <tr>
+      <td>app_type</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>application type which service provider defines <br /> i.e) IOS, ANDROID</td>
+    </tr>
+    <tr>
+      <td>app_ver</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>application version<br /> i.e) 1.0.0, 1.0.0-RELEASE</td>
+    </tr>
+    <tr>
+      <td>notification_type</td>
+      <td>String</td>
+      <td>Y</td>
+      <td><strong><em>apns</em></strong> : apple regular APNs<br /> <strong><em>apnsvoip</em></strong> : apple VoIP APNs<br /> <strong><em>gcm</em></strong> : google gcm<br /> <strong><em>fcm</em></strong> : google fcm</td>
+    </tr>
+    <tr>
+      <td>notification_token</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>platform specific notification token</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>apns_server</td>
+      <td>String</td>
+      <td>N</td>
+      <td>effective only if notification_type is apns.<br /> <strong><em>development</em></strong> (a.k.a sandbox) <br /> <strong><em>production</em></strong><br /> ref. <a href="https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingwithAPNs.html#//apple_ref/doc/uid/TP40008194-CH11-SW1">APNs Connections</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Response</p>
+</blockquote>
+
+<ul>
+  <li>N/A</li>
+</ul>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">curl</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">request</span> <span class="no">GET</span> <span class="s1">'http://voipnx-as.line-apps-beta.com:10712/v1/update_notification_token?user_id=to&amp;service_id=voip.com&amp;notification_type=apnsvoip&amp;notification_token=notification_token&amp;apns_server=development&amp;app_type=IOS&amp;app_ver=1.0.0'</span> <span class="p">\</span>
+<span class="o">--</span><span class="n">header</span> <span class="s1">'Accept: application/json'</span>
+ 
+<span class="p">{</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span><span class="p">,</span>
+    <span class="s2">"data"</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1580218737464</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="get-notification-long-polling">Get notification (<strong><em>Long-Polling</em></strong>)</h3>
+
+<p>If platform-specific notifications (APN, FCM, etc.) are not available, use http long polling method.</p>
+<ul>
+  <li>When caller receives error code, re-run polling</li>
+  <li>Do not call API too much within a short time</li>
+</ul>
+
+<blockquote>
+  <p>Method &amp; URI</p>
+</blockquote>
+
+<ul>
+  <li>Method: GET</li>
+  <li>URI: ${as_base_url}/v1/notification/lp</li>
+</ul>
+
+<blockquote>
+  <p>Query</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>user_id</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>user id</td>
+    </tr>
+    <tr>
+      <td>service_id</td>
+      <td>String</td>
+      <td>Y</td>
+      <td>service id</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Response</p>
+</blockquote>
+
+<ul>
+  <li>N/A</li>
+</ul>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">curl</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">request</span> <span class="no">GET</span> <span class="s1">'http://voipnx-as.line-apps-beta.com:10712/v1/notification/lp?service_id=planetkit&amp;user_id=0252'</span> <span class="p">\</span>
+<span class="o">--</span><span class="n">header</span> <span class="s1">'Accept: application/json'</span>
+ 
+ 
+<span class="p">{</span>
+  <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"app_callee_uid"</span><span class="p">:</span> <span class="s2">"0252"</span><span class="p">,</span>
+    <span class="s2">"app_stid"</span><span class="p">:</span> <span class="s2">"SampleUserData"</span><span class="p">,</span>
+    <span class="s2">"app_callee_sid"</span><span class="p">:</span> <span class="s2">"planetkit"</span><span class="p">,</span>
+    <span class="s2">"app_caller_sid"</span><span class="p">:</span> <span class="s2">"planetkit"</span><span class="p">,</span>
+    <span class="s2">"app_call_type"</span><span class="p">:</span> <span class="s2">"A"</span><span class="p">,</span>
+    <span class="s2">"app_caller_uid"</span><span class="p">:</span> <span class="s2">"th"</span><span class="p">,</span>
+    <span class="s2">"cc_param"</span><span class="p">:</span> <span class="s2">"eyJ2b2lwVGNwUG9ydCI6IjgwODAiLCJ2b2lwQWRkcmVzcyI6IjE0Ny45Mi4xNTkuNywxNDcuOTIuMTU5LjcwIiwiZnJvbVpvbmUiOiJrciIsImNvbW1QYXJhbSI6IntcIm1wa2V5XCI6XCJBbVhYYk9zMkRud3NNSUFEUUNhamQ3QzcxVXB2KzJBSDcweU1HUVlrK0tjVVwiLFwiY3RtXCI6MzAwMCxcImljdFwiOjYwMDB9Iiwidm9pcFVkcFBvcnQiOiIxMTA3MSIsImNhbGxUeXBlIjoiQSIsInRvVG9rZW4iOiIyZmY3ODRkLi4uIiwic2lkIjoiOTIwNTM5NkYtODAxMi00RDU4LTgxQTItRjc3MEJDQzE2QTU3IiwidG9ab25lIjoia3IifQ=="</span>
+  <span class="p">},</span>
+  <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1586334096360</span>
+<span class="p">}</span></code></pre></figure>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#sample" class="page__taxonomy-item" rel="tag">Sample</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-08-12T00:00:00+09:00">August 12, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Sample+Server+API+Specification%20http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Fapi%2520specification%2Fapi-sample-server%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Fapi%2520specification%2Fapi-sample-server%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Fapi%2520specification%2Fapi-sample-server%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/jungnam-gwock/TestDoc/documents/api%20specification/api-server-notify/" class="pagination--pager" title="Server Callback: Notify
+">Previous</a>
+    
+    
+      <a href="/jungnam-gwock/TestDoc/documents/sample/sample-intro/" class="pagination--pager" title="What is the Sample?
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-data-session/" rel="permalink">Data session API
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet provides data session for an application to communicate application data.
+For example, an application sends or receives text message to implement...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/" rel="permalink">Shared contents API
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Contents share api lets an application share time related data with peers. 
+The shared data could be anything but 1KBytes limited size.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-terminology/" rel="permalink">Terminology
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet
+
+VoIP platform name. Often LINE Planet is called as LINE Planet cloud.
+Sometimes this means LINE Planet developers or the team.
+
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-firewall/" rel="permalink">Network firewall settings for LINE Planet
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If an application cannot make it a call or join a conference 
+and disconnected with kitDisconnectReason :: ServiceHttpError, 
+you should check network connec...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/jungnam-gwock/TestDoc/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 LINE Planet. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/jungnam-gwock/TestDoc/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr.min.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-store.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

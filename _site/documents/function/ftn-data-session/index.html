@@ -1,0 +1,959 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Data session API - LINE Planet</title>
+<meta name="description" content="LINE Planet provides data session for an application to communicate application data. For example, an application sends or receives text message to implement text chatting during a conference. Note that data session is only available after a call setup is completed or join in a conference.">
+
+
+  <meta name="author" content="LINE Planet">
+  
+  <meta property="article:author" content="LINE Planet">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="LINE Planet">
+<meta property="og:title" content="Data session API">
+<meta property="og:url" content="http://localhost:4000/jungnam-gwock/TestDoc/documents/function/ftn-data-session/">
+
+
+  <meta property="og:description" content="LINE Planet provides data session for an application to communicate application data. For example, an application sends or receives text message to implement text chatting during a conference. Note that data session is only available after a call setup is completed or join in a conference.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-03-09T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/jungnam-gwock/TestDoc/documents/function/ftn-data-session/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/jungnam-gwock/TestDoc/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/jungnam-gwock/TestDoc/feed.xml" type="application/atom+xml" rel="alternate" title="LINE Planet Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/jungnam-gwock/TestDoc/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/jungnam-gwock/TestDoc/">
+          LINE Planet
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/notice/">Notice</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/milestones/">Milestones</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/documents/">Documents</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/jungnam-gwock/TestDoc/assets/images/planet.png" alt="LINE Planet" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">LINE Planet</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>VoIP Platform Service</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/about/" rel="nofollow noopener noreferrer"><i class="far fa-lightbulb" aria-hidden="true"></i><span class="label">About</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/contact/" rel="nofollow noopener noreferrer"><i class="fas fa-envelope" aria-hidden="true"></i><span class="label">Contact</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/tags/" rel="nofollow noopener noreferrer"><i class="fas fa-tags" aria-hidden="true"></i><span class="label">Tag</span></a></li>
+          
+        
+          
+            <li><a href="https://oss.navercorp.com/PlanetKit" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub for PlanetKit</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Data session API">
+    <meta itemprop="description" content="LINE Planet provides data session for an application to communicate application data.For example, an application sends or receives text message to implement text chatting during a conference.Note that data session is only available after a call setup is completed or join in a conference.">
+    <meta itemprop="datePublished" content="2021-03-09T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Data session API
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>LINE Planet provides data session for an application to communicate application data.<br />
+For example, an application sends or receives text message to implement text chatting during a conference.<br />
+Note that data session is only available after a call setup is completed or join in a conference.<br /></p>
+
+<p>Application must define data communication protocol and LINE Planet just provides data session(s) 
+as a communication channel for application’s data communication protocol.</p>
+
+<p><span style="font-size: 70%; color:deepskyblue">
+LINE Planet is a real time communication platform. <br />
+And the real time communication on the internet is not guaranteed because packets 
+could be lost or delayed depends on current network condition.
+These network impairments affect real time communication quality. Even 
+sometimes the call(or conference) cannot be continued.<br />
+Also heavy traffic could cause various network impairments.<br />
+<strong><em>When an application uses data session,
+please perceive data communication makes lower voice communication or video communication quality</em></strong>
+.<br />
+</span></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Supported service type</th>
+      <th>Minimum SDK version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1:1 call, group call</td>
+      <td>PlanetKit 3.2 for iOS, macOS and Android<br /> PlanetKit 3.3 for Windows<br /> WebPlanetKit NOT Supported</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--  refrence
+https://wiki.linecorp.com/display/voip/AMP+core+API+for+data+session
+-->
+
+<h2 id="data-session-apis">Data session APIs</h2>
+
+<p><span style="font-size: 70%; color:green">
+An API signature describing this page is different with the real code’s. 
+Please refer API reference documents or codes in implementation.
+</span></p>
+
+<p>Data session apis are directional - Send and Receive. For each side, 
+application should request a data session with pre-defined stream id. 
+The ‘pre-defined’ means the stream id value is discussed between the both side before implementation stage.</p>
+
+<h3 id="about-stream-id">About Stream ID</h3>
+<p>A stream id is an identifier of data communication defined by application in a design stage. 
+This is not dynamic.
+If A receiver cannot handle a specific stream id, must stop to use it.</p>
+
+<p><span style="font-size: 100%; color:deepskyblue;">
+Available Stream ID Range: 100 ~ 1000
+</span></p>
+
+<p>Application must choose stream ids within above available stream id range.</p>
+
+<p>Requesting both sides for the one stream id is available.</p>
+
+<h3 id="api-summary">API Summary</h3>
+<p>Related APIs(including event callbacks) are following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sender side</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>makeSendDataSession</td>
+      <td>Make one data session for a stream id</td>
+    </tr>
+    <tr>
+      <td>dataSessionSend</td>
+      <td>Send data</td>
+    </tr>
+    <tr>
+      <td>dataSessionChangeDestination</td>
+      <td>Change destination</td>
+    </tr>
+    <tr>
+      <td>isSupportedDataSession</td>
+      <td>Check data session compatibility in 1:1 call</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Receiver side</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>evtDataSessionIncoming</td>
+      <td>New data has arrived through a data session mapped a stream id</td>
+    </tr>
+    <tr>
+      <td>makeRecvDataSession</td>
+      <td>Make one data session to receive</td>
+    </tr>
+    <tr>
+      <td>unsupportDataSession</td>
+      <td>Un-support the stream id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="data-session-lifetime">Data session lifetime</h3>
+
+<p>Once a data sessions is made, it is active until the call(or conference) session is ended.<br /></p>
+
+<h3 id="data-session-streaming-type">Data session streaming type</h3>
+<p>Data session has 3 streaming types. Application should choose which type to use depends on application data characteristics.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Reliable message</td>
+      <td>Lost packets will be retransmitted. <br /><code class="language-plaintext highlighter-rouge">evtDataSessionRecved</code> is called when every one message is aggregated. So it is called as <code class="language-plaintext highlighter-rouge">dataSessionSend</code> calling times.</td>
+    </tr>
+    <tr>
+      <td>Reliable bytes</td>
+      <td>Lost packets will be retransmitted. <br />SDK fragments data if the data is larger than MTU. However will not aggregate packets on the receiver side. Application should aggregate fragmented packets.</td>
+    </tr>
+    <tr>
+      <td>UnReliable bytes</td>
+      <td>Lost packets are not retransmitted. <br />SDK only fragments data such as ‘Reliable byte’.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="apis">APIs</h3>
+
+<p><span style="font-size: 120%; color:yellowgreen;">
+Sender side<br />
+</span></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>makeSendDataSession(streamId, type, cbException ,completion…)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Request the new data session to send belong to <code class="language-plaintext highlighter-rouge">streamId</code></td>
+    </tr>
+    <tr>
+      <td>@<a href="#about-stream-id">streamId</a>: stream identifier defined by application</td>
+    </tr>
+    <tr>
+      <td>@<a href="#data-session-streaming-type">type</a>: data streaming type</td>
+    </tr>
+    <tr>
+      <td>@cbException(streamId, exceptionType, …): Called when exception occur</td>
+    </tr>
+    <tr>
+      <td>@completion(streamId, …): Completion callback. Application must use the stream id after this completion.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Following table shows the sender side exception list. 
+Please refer and do proper actions on the application layer.
+Note that too much traffic could lower the audio and video communication quality.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description<br />Direction</th>
+      <th>Application should do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TooLong<br />QueuedData<br />(Triggered=TRUE)</td>
+      <td>Detected that the data traffic is too much</td>
+      <td>Application should stop or lower send bitrate</td>
+    </tr>
+    <tr>
+      <td>TooLong<br />QueuedData<br />(Triggered=FALSE)</td>
+      <td>Network condition is being better before</td>
+      <td>Available more send traffic</td>
+    </tr>
+    <tr>
+      <td>UnspportedDataSessionStreamId</td>
+      <td>Released when <code class="language-plaintext highlighter-rouge">unsupportDataSession</code> is called on the receiver side</td>
+      <td>Do not use that stream id</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Please note that the more <code class="language-plaintext highlighter-rouge">TooLongQueuedData</code> event would the lower voice and video quality.</p>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>dataSessionSend(streamId, …)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Send data</td>
+    </tr>
+    <tr>
+      <td>@streamId: stream id</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>dataSessionChangeDestination(streamId, userId, completion, …)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Change destination. Default means broadcast.</td>
+    </tr>
+    <tr>
+      <td>@streamId: stream id</td>
+    </tr>
+    <tr>
+      <td>@userId: user id. Null means broadcast.</td>
+    </tr>
+    <tr>
+      <td>@completion: Completion callback. Changed destination will be applied after this callback.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<span style="font-size: 120%; color:yellowgreen;">
+Receiver side<br />
+</span></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>evtDataSessionIncoming (streamId, …)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>When arrive a new data via the data session that had have made and sent by the sender side, a receiver side is notified by <code class="language-plaintext highlighter-rouge">evtDataSessionIncoming</code>.</td>
+    </tr>
+    <tr>
+      <td>@<a href="#about-stream-id">streamId</a>: <code class="language-plaintext highlighter-rouge">streamId</code> in <code class="language-plaintext highlighter-rouge">requestSendDataSession()</code> called by the sender</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>In a conference, <br />
+late joiners will also receive <code class="language-plaintext highlighter-rouge">evtDataSessionIncoming</code> when receiving the data after join flow completion.</p>
+</blockquote>
+
+<p><span style="font-size: 70%;">
+ The late joiner means who joins after someone has already started a data stream
+ </span></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>makeRecvDataSession(streamId, cbRecved, cbException, completion, …)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Request the new data session to receive belong to <code class="language-plaintext highlighter-rouge">streamId</code></td>
+    </tr>
+    <tr>
+      <td>@<a href="#about-stream-id">streamId</a>: stream identifier defined by application. <code class="language-plaintext highlighter-rouge">evtDataSessionIncoming</code> delivers this from peer’s <code class="language-plaintext highlighter-rouge">streamId</code> in <code class="language-plaintext highlighter-rouge">requestSendDataSession</code></td>
+    </tr>
+    <tr>
+      <td>@cbRecved(streamId, data, …) : Received data callback</td>
+    </tr>
+    <tr>
+      <td>@cbException(streamId, exceptionType, …): Called shen exception occur</td>
+    </tr>
+    <tr>
+      <td>@completion(streamId, …): Completion callback. <code class="language-plaintext highlighter-rouge">cbRecved</code> is called after this completion.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>unsupportDataSession(streamId, …)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Call this when an application receive unknown <code class="language-plaintext highlighter-rouge">streamId</code> in <code class="language-plaintext highlighter-rouge">evtDataSessionIncoming</code>. This function lets sender stop to send.</td>
+    </tr>
+    <tr>
+      <td>@<a href="#about-stream-id">streamId</a>: stream identifier defined by application. <code class="language-plaintext highlighter-rouge">evtDataSessionIncoming</code> delivers this from peer’s <code class="language-plaintext highlighter-rouge">streamId</code> in <code class="language-plaintext highlighter-rouge">addSendDataSession()</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="data-session-compatibility">Data session compatibility</h2>
+<ul>
+  <li>1:1 call
+    <ul>
+      <li>isSupportedDataSession() provides whether if the peer supports data session or not.</li>
+    </ul>
+  </li>
+  <li>Group call
+    <ul>
+      <li>Participant info describes whether if a participant supports data session or not</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Even the peer(s) has data session capability, capability of handling a specific stream id is another compatibility issue.
+This issue is about handling of a not implemented stream id old versions.</p>
+
+<p>Compatibility pre-check of specific stream id could be solved by calling <code class="language-plaintext highlighter-rouge">rejectRecvDataSession()</code>.
+Or implement reliable stream id data session that is available from the first version.</p>
+
+<h2 id="history">History</h2>
+<p>2021-03-09 The first version <br /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#function" class="page__taxonomy-item" rel="tag">function</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-03-09T00:00:00+09:00">March 9, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Data+session+API%20http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Ffunction%2Fftn-data-session%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Ffunction%2Fftn-data-session%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Ffunction%2Fftn-data-session%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/" class="pagination--pager" title="Shared contents API
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/" rel="permalink">Shared contents API
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Contents share api lets an application share time related data with peers. 
+The shared data could be anything but 1KBytes limited size.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-terminology/" rel="permalink">Terminology
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet
+
+VoIP platform name. Often LINE Planet is called as LINE Planet cloud.
+Sometimes this means LINE Planet developers or the team.
+
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-firewall/" rel="permalink">Network firewall settings for LINE Planet
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If an application cannot make it a call or join a conference 
+and disconnected with kitDisconnectReason :: ServiceHttpError, 
+you should check network connec...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect/" rel="permalink">Client Disconnect Reason - kitDisconnectReason
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+PlanetKit provides kitDisconnectReason 
+for an application to get to know the call disconnection reason.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/jungnam-gwock/TestDoc/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 LINE Planet. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/jungnam-gwock/TestDoc/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr.min.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-store.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

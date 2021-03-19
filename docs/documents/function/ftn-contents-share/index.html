@@ -1,0 +1,736 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Shared contents API - LINE Planet</title>
+<meta name="description" content="Contents share api lets an application share time related data with peers.  The shared data could be anything but 1KBytes limited size.">
+
+
+  <meta name="author" content="LINE Planet">
+  
+  <meta property="article:author" content="LINE Planet">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="LINE Planet">
+<meta property="og:title" content="Shared contents API">
+<meta property="og:url" content="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/">
+
+
+  <meta property="og:description" content="Contents share api lets an application share time related data with peers.  The shared data could be anything but 1KBytes limited size.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-03-09T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/jungnam-gwock/TestDoc/feed.xml" type="application/atom+xml" rel="alternate" title="LINE Planet Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/jungnam-gwock/TestDoc/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/jungnam-gwock/TestDoc/">
+          LINE Planet
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/notice/">Notice</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/milestones/">Milestones</a>
+            </li><li class="masthead__menu-item">
+              <a href="/jungnam-gwock/TestDoc/documents/">Documents</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/jungnam-gwock/TestDoc/assets/images/planet.png" alt="LINE Planet" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">LINE Planet</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>VoIP Platform Service</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/about/" rel="nofollow noopener noreferrer"><i class="far fa-lightbulb" aria-hidden="true"></i><span class="label">About</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/contact/" rel="nofollow noopener noreferrer"><i class="fas fa-envelope" aria-hidden="true"></i><span class="label">Contact</span></a></li>
+          
+        
+          
+            <li><a href="https://pages.oss.navercorp.com/Planet/Service/tags/" rel="nofollow noopener noreferrer"><i class="fas fa-tags" aria-hidden="true"></i><span class="label">Tag</span></a></li>
+          
+        
+          
+            <li><a href="https://oss.navercorp.com/PlanetKit" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub for PlanetKit</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Shared contents API">
+    <meta itemprop="description" content="Contents share api lets an application share time related data with peers. The shared data could be anything but 1KBytes limited size.">
+    <meta itemprop="datePublished" content="2021-03-09T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Shared contents API
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Contents share api lets an application share time related data with peers. 
+The shared data could be anything but 1KBytes limited size.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Supported service type</th>
+      <th>Minimum SDK version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1:1 call, group call</td>
+      <td>PlanetKit 3.2 for iOS, macOS and Android<br /> PlanetKit 3.3 for Windows<br /> WebPlanetKit NOT Supported</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="contents-share-api">Contents share API</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Counterpart event</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>setSharedContents(Data)<br /> setExclusiveSharedContents(Data)</td>
+      <td>evtPeerSetSharedContents<br /> evtPeerSetExclusiveSharedContents</td>
+      <td>Write shared-data as a specific value</td>
+    </tr>
+    <tr>
+      <td>unsetSharedContents(Data)<br /> unsetExclusiveSharedContents(Data)</td>
+      <td>evtPeerUnsetSharedContents<br /> evtPeerUnsetExclusiveSharedContents</td>
+      <td>Clean the shared-data</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Above <span style="color:orange"> contents share apis are available only after
+a call setup is completed - both 1:1 call and group call</span>.</p>
+
+<p>Once someone starts to share data via <code class="language-plaintext highlighter-rouge">setSharedContents()</code>, others are notified by 
+<code class="language-plaintext highlighter-rouge">evtPeerSetSharedContents</code> that delivers following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user-id</code></td>
+      <td>Application user id</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">service-id</code></td>
+      <td>Application service id</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">application-data</code> and <code class="language-plaintext highlighter-rouge">data-length</code></td>
+      <td>Data itself and size</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">elapsed-ms-from-last-set</code></td>
+      <td>elapsed millisecond time from the shared data is modified</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">elapsed-ms-from-last-set</code> field lets an application calculate how long time passed from the last modified time.</p>
+
+<p><span style="color:orange">
+Please note that only <code class="language-plaintext highlighter-rouge">setExclusiveSharedContents()</code> caller can modify the shared data.
+</span></p>
+
+<p>The prefix “Exclusive” means the shared data exists only one instance during the room (or the call). <br />
+If one shared data is required for all in the room, use the exclusive API pair.
+Or if all participants require its own data to be shared, use the un-exclusive API pair.<br /></p>
+
+<p>Using both exclusive API and un-exclusive API does not cause any problem.</p>
+
+<h2 id="example---raise-hands-before-talking">Example - raise hands before talking</h2>
+
+<p>This is a very simple case to show the usage of the contents share apis.<br />
+We hope to understand what the ‘Exclusive` is and how to design shared data structure by this example.<br />
+<br />
+An application plans to implement ‘raise hands’ before someone talks by using contents share apis.<br />
+And the flag saying ‘raise hands’ is <span style="color:orange">valid only 3 seconds</span>.</p>
+
+<p><span style="font-size: 150%; color:lightblue">
+The first case 
+</span>
+assumes anyone can raise hands at one time, so multiple participants can raise hands.</p>
+
+<p>1) Shared data structure ={<code class="language-plaintext highlighter-rouge">flag</code>}.<br />
+2) Anyone who want to talk, call <code class="language-plaintext highlighter-rouge">setSharedContents(flag=TRUE)</code><br />
+3) Everyone knows who want to talk via <code class="language-plaintext highlighter-rouge">user-id</code> in <code class="language-plaintext highlighter-rouge">evtPeerSetSharedContents</code>.<br />
+4) When a new participant joins 4 seconds later, he(or she) will be notified <code class="language-plaintext highlighter-rouge">evtPeerSetSharedContents</code>s. 
+And only participants belong to <code class="language-plaintext highlighter-rouge">elapsed-ms-from-last-set</code> &lt; 3000 msec are handled as ‘raise hands’.</p>
+
+<p><span style="font-size: 150%; color:lightblue">
+The second case 
+</span>
+assumes only one talker can raise hands at one time, so only one participant can raise hands.<br />
+This case requires a master participant and just assume user-m is the <code class="language-plaintext highlighter-rouge">user-id</code> of the master.</p>
+
+<p>1) Shared data structure ={<code class="language-plaintext highlighter-rouge">h-user-id</code>, <code class="language-plaintext highlighter-rouge">flag</code>}.<br />
+2) Master calls <code class="language-plaintext highlighter-rouge">setExclusiveSharedContents(h-user-id=NULL, flag=FALSE)</code>.<br /></p>
+
+<p>Here after, others calling <code class="language-plaintext highlighter-rouge">setExclusiveSharedContents()</code> is ignored.<br /></p>
+
+<p>3) Anyone who want to talk, call <a href="/jungnam-gwock/TestDoc//documents/function/ftn-sendshortdata/">sendShortData()</a> to user-m.<br />
+4) Master picks only one participant(assume user-a).<br />
+5) Master calls <code class="language-plaintext highlighter-rouge">setExclusiveSharedContents(h-user-id=user-a, flag=TRUE)</code>.<br />
+6) Everyone knows user-a(<code class="language-plaintext highlighter-rouge">h-user-id</code>) want to talk(<code class="language-plaintext highlighter-rouge">flag=TRUE</code>) via <code class="language-plaintext highlighter-rouge">evtPeerSetExclusiveSharedContents</code>. <br /></p>
+
+<p>In the step 6, the caller <code class="language-plaintext highlighter-rouge">user-id</code> in <code class="language-plaintext highlighter-rouge">evtPeerSetExclusiveSharedContents</code> is the user-m and this is different someone who raises hands.</p>
+
+<h2 id="history">History</h2>
+<p>2021-03-09 The first version <br /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/jungnam-gwock/TestDoc/tags/#function" class="page__taxonomy-item" rel="tag">function</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-03-09T00:00:00+09:00">March 9, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Shared+contents+API%20https%3A%2F%2Fpages.oss.navercorp.com%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Ffunction%2Fftn-contents-share%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpages.oss.navercorp.com%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Ffunction%2Fftn-contents-share%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fpages.oss.navercorp.com%2Fjungnam-gwock%2FTestDoc%2Fdocuments%2Ffunction%2Fftn-contents-share%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/jungnam-gwock/TestDoc/documents/article/art-terminology/" class="pagination--pager" title="Terminology
+">Previous</a>
+    
+    
+      <a href="/jungnam-gwock/TestDoc/documents/function/ftn-data-session/" class="pagination--pager" title="Data session API
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/function/ftn-data-session/" rel="permalink">Data session API
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet provides data session for an application to communicate application data.
+For example, an application sends or receives text message to implement...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-terminology/" rel="permalink">Terminology
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">LINE Planet
+
+VoIP platform name. Often LINE Planet is called as LINE Planet cloud.
+Sometimes this means LINE Planet developers or the team.
+
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/article/art-firewall/" rel="permalink">Network firewall settings for LINE Planet
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If an application cannot make it a call or join a conference 
+and disconnected with kitDisconnectReason :: ServiceHttpError, 
+you should check network connec...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect/" rel="permalink">Client Disconnect Reason - kitDisconnectReason
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+PlanetKit provides kitDisconnectReason 
+for an application to get to know the call disconnection reason.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/jungnam-gwock/TestDoc/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 LINE Planet. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/jungnam-gwock/TestDoc/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr.min.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-store.js"></script>
+<script src="/jungnam-gwock/TestDoc/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
