@@ -1,9 +1,9 @@
 main:
-  - title: "Notice"
-    url: /notice/
   - title: "Milestones"
     url: /milestones/
   - title: "Documents"
     url: /documents/
 #  - title: "FAQs"
 #    url: /faqs/
+#  - title: "Notice"
+#    url: /notice/

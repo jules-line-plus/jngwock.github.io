@@ -19,9 +19,11 @@ email: dl_planet_help@linecorp.com
 description: Provide VoIP API
 #github_username: line planet document
 repository: planetkit/kit.github.io
-url: https://pages.oss.navercorp.com
+#url: https://pages.oss.navercorp.com
+url: https://jngwock.github.io
 #baseurl: /Planet/Service/
-baseurl: /jungnam-gwock/TestDoc/
+#baseurl: /jungnam-gwock/TestDoc/
+baseurl: / 
 minimal_mistakes_skin: dark  # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 search: true
 future: true
