@@ -280,63 +280,67 @@
     
     
 <h2>
-    <span style="color:yellow">(WebPlanetKit 3.1) WebPlanetKit Release</span>
+    <span style="color:yellow">Update milestone and pre-share PlanetKit 3.2</span>
   </h2>
-<p><small>LINE PLANET RELEASE, 24 February 2021 </small></p>
-<p>WebPlanetKit 3.1 이 릴리즈 되었습니다. <br /></p>
+<p><small>LINE PLANET UPDATE, 09 March 2021 </small></p>
+<p>Milestone is updated.<br />
+Pre-share PlanetKit 3.2 features. <br />
+<!--more--></p>
 
-<!--more-->
+<p><span style="font-size: 80%; color:#8FBC8F">
+[Korean]
+</span></p>
 
-<h2 id="webplanetkit-31">WebPlanetKit 3.1</h2>
+<p>Milestone 이 업데이트 되었습니다. 개발에 참고 부탁 드립니다.<br /></p>
 
-<p>PlanetKit 3.1.4 이 릴리즈 되었습니다.<br /></p>
-
-<p><strong><em>주요 업데이트</em></strong></p>
 <ul>
-  <li>Group Call
-    <ul>
-      <li>WebPlanetKit 에서 그룹콜이 가능 합니다. 단, iOS, Android, Windows and macOS 와 그룹콜 연동은 PlanetKit 3.1 부터 가능합니다.</li>
-    </ul>
-  </li>
-  <li><a href="/jungnam-gwock/TestDoc//documents/function/ftn-presentation/">Screen share</a> in Group Call
-    <ul>
-      <li>1:1 call 중에는 아직 미지원입니다.</li>
-    </ul>
-  </li>
-  <li>Mute request</li>
-  <li>isSupported API
-    <ul>
-      <li>브라우져에 따라 WebPlanetKit 지원 여부가 결정 됩니다. isSupported API 로 지원 가능 여부를 조회 할 수 있습니다.</li>
-    </ul>
-  </li>
+  <li><a href="/jungnam-gwock/TestDoc//milestones">Milestone</a></li>
 </ul>
 
-<p><br />
-<strong><em>알려진 이슈</em></strong></p>
+<p>Data session 과 Shared contents 기능에 대해 작성된 문서를 미리 공유 드립니다. 
+개발에 참고 부탁 드립니다.<br /></p>
+
 <ul>
-  <li>참여자 많을때 간혹 특정 사람 영상이 안보임</li>
-  <li>참여자 많을 때 화면 공유 안보이거나 WebPlnaetKit과 PlanetKit 간 화면 공유 불안정</li>
+  <li><a href="/jungnam-gwock/TestDoc//documents/function/ftn-data-session/">Data session API</a>
+    <ul>
+      <li>전송이 보장 되는 채널을 제공 합니다.</li>
+      <li>Application 에서는 통화중에 간단한 메시지 전송 혹은 whiteboard 를 위한 데이터 채널로 활용 가능 합니다.</li>
+    </ul>
+  </li>
+  <li><a href="/jungnam-gwock/TestDoc//documents/function/ftn-contents-share/">Shared contents PI</a>
+    <ul>
+      <li>특정 값을 참여자간에 실시간으로 공유 할 수 있습니다.</li>
+      <li>변화 이후 지난 시간을 내려주기 때문에 시간에 의존적인 컨텐츠를 공유 할 수 있습니다.</li>
+    </ul>
+  </li>
 </ul>
 
 <p><span style="font-size: 80%; color:#8FBC8F">
-WebPlanetKit 으로 서비스 오픈이 예정 되어 있어서, 우선 서비스 오픈이 가능 한 수준에서 기능 개발 및 튜닝을 한 상태입니다.<br />
-현재 알려진 이슈들은 추후 우선순위를 높여서 진행 합니다.
+[English]
 </span></p>
 
-<h2 id="function-comparison-table">Function comparison table</h2>
-<p>WebPlanetKit 은 WebRTC 기반으로 되어 있어 PlanetKit 보다 기능 개발이 제한 적입니다.<br />
-<a href="/jungnam-gwock/TestDoc//documents/function/ftn-table/">LINE Planet Function Table</a> 을 참고 부탁 드립니다.</p>
-
-<h2 id="release-history">Release history</h2>
-<p>PlanetKit 의 릴리즈가 있을때는 항상 Release history 를 작성 하고 있습니다.<br />
-참조 부탁 드립니다.</p>
+<p>Milestone is updated. Please refer updated dates.<br /></p>
 
 <ul>
-  <li><a href="https://oss.navercorp.com/PlanetKit/sample-ios/releases">iOS</a> <br /></li>
-  <li><a href="https://oss.navercorp.com/PlanetKit/sample-android/milestones?state=closed">Android</a> <br /></li>
-  <li><a href="https://oss.navercorp.com/PlanetKit/sample-macos/releases">Mac</a> <br /></li>
-  <li><a href="https://oss.navercorp.com/PlanetKit/sample-windows/milestones?state=closed">Windows</a> <br /></li>
-  <li><a href="https://oss.navercorp.com/PlanetKit/sample-web/milestones">Web</a> <br /></li>
+  <li><a href="/jungnam-gwock/TestDoc//milestones">Milestone</a></li>
+</ul>
+
+<p>We share data session api and shared contents before release.
+Please check this for your implementation. <br /></p>
+
+<ul>
+  <li><a href="/jungnam-gwock/TestDoc//documents/function/ftn-data-session/">Data session API</a>
+    <ul>
+      <li>Provide reliable data send channel.</li>
+      <li>Application can use this as simple message sending or data streaming in whiteboard.</li>
+    </ul>
+  </li>
+  <li><a href="/jungnam-gwock/TestDoc//documents/function/ftn-contents-share/">Shared contents PI</a>
+    <ul>
+      <li>A specific value can be shared among participants in realtime.</li>
+      <li>Provide expired time from the last modified time, which make application share time dependent contents.</li>
+    </ul>
+  </li>
 </ul>
 
 <hr />
@@ -344,6 +348,14 @@ WebPlanetKit 으로 서비스 오픈이 예정 되어 있어서, 우선 서비�
 <br /></p>
 
 <h2 id="recent-notices"><span style="color:orange">Recent Notices</span></h2>
+
+<h3>
+    <a href="/jungnam-gwock/TestDoc//notice/2021-02-24-WebKit31/">(WebPlanetKit 3.1) WebPlanetKit Release</a>
+  </h3>
+<p><small>LINE PLANET RELEASE, 24 February 2021 </small></p>
+<p>WebPlanetKit 3.1 이 릴리즈 되었습니다. <br /></p>
+
+<hr />
 
 <h3>
     <a href="/jungnam-gwock/TestDoc//notice/2021-02-15-Kit31/">(PlanetKit 3.1) PlanetKit Release</a>

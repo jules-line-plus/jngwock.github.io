@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/" rel="alternate" type="text/html" /><updated>2021-03-09T17:52:22+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/feed.xml</id><title type="html">LINE Planet</title><subtitle>Provide VoIP API</subtitle><author><name>LINE Planet</name></author><entry><title type="html">Data session API</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-data-session/" rel="alternate" type="text/html" title="Data session API" /><published>2021-03-09T00:00:00+09:00</published><updated>2021-03-09T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-data-session</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-data-session/">&lt;p&gt;LINE Planet provides data session for an application to communicate application data.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://jngwock.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jngwock.github.io/" rel="alternate" type="text/html" /><updated>2021-03-19T11:47:34+09:00</updated><id>https://jngwock.github.io/feed.xml</id><title type="html">LINE Planet</title><subtitle>Provide VoIP API</subtitle><author><name>LINE Planet</name></author><entry><title type="html">Data session API</title><link href="https://jngwock.github.io/documents/function/ftn-data-session/" rel="alternate" type="text/html" title="Data session API" /><published>2021-03-09T00:00:00+09:00</published><updated>2021-03-09T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/function/ftn-data-session</id><content type="html" xml:base="https://jngwock.github.io/documents/function/ftn-data-session/">&lt;p&gt;LINE Planet provides data session for an application to communicate application data.&lt;br /&gt;
 For example, an application sends or receives text message to implement text chatting during a conference.&lt;br /&gt;
 Note that data session is only available after a call setup is completed or join in a conference.&lt;br /&gt;&lt;/p&gt;
 
@@ -345,7 +345,7 @@ This issue is about handling of a not implemented stream id old versions.&lt;/p&
 Or implement reliable stream id data session that is available from the first version.&lt;/p&gt;
 
 &lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
-&lt;p&gt;2021-03-09 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">LINE Planet provides data session for an application to communicate application data. For example, an application sends or receives text message to implement text chatting during a conference. Note that data session is only available after a call setup is completed or join in a conference.</summary></entry><entry><title type="html">Shared contents API</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/" rel="alternate" type="text/html" title="Shared contents API" /><published>2021-03-09T00:00:00+09:00</published><updated>2021-03-09T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/">&lt;p&gt;Contents share api lets an application share time related data with peers. 
+&lt;p&gt;2021-03-09 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">LINE Planet provides data session for an application to communicate application data. For example, an application sends or receives text message to implement text chatting during a conference. Note that data session is only available after a call setup is completed or join in a conference.</summary></entry><entry><title type="html">Shared contents API</title><link href="https://jngwock.github.io/documents/function/ftn-contents-share/" rel="alternate" type="text/html" title="Shared contents API" /><published>2021-03-09T00:00:00+09:00</published><updated>2021-03-09T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/function/ftn-contents-share</id><content type="html" xml:base="https://jngwock.github.io/documents/function/ftn-contents-share/">&lt;p&gt;Contents share api lets an application share time related data with peers. 
 The shared data could be anything but 1KBytes limited size.&lt;/p&gt;
 
 &lt;table&gt;
@@ -462,7 +462,7 @@ This case requires a master participant and just assume user-m is the &lt;code c
 
 &lt;p&gt;Here after, others calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setExclusiveSharedContents()&lt;/code&gt; is ignored.&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;3) Anyone who want to talk, call &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/function/ftn-sendshortdata/&quot;&gt;sendShortData()&lt;/a&gt; to user-m.&lt;br /&gt;
+&lt;p&gt;3) Anyone who want to talk, call &lt;a href=&quot;//documents/function/ftn-sendshortdata/&quot;&gt;sendShortData()&lt;/a&gt; to user-m.&lt;br /&gt;
 4) Master picks only one participant(assume user-a).&lt;br /&gt;
 5) Master calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setExclusiveSharedContents(h-user-id=user-a, flag=TRUE)&lt;/code&gt;.&lt;br /&gt;
 6) Everyone knows user-a(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h-user-id&lt;/code&gt;) want to talk(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flag=TRUE&lt;/code&gt;) via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerSetExclusiveSharedContents&lt;/code&gt;. &lt;br /&gt;&lt;/p&gt;
@@ -470,7 +470,7 @@ This case requires a master participant and just assume user-m is the &lt;code c
 &lt;p&gt;In the step 6, the caller &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerSetExclusiveSharedContents&lt;/code&gt; is the user-m and this is different someone who raises hands.&lt;/p&gt;
 
 &lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
-&lt;p&gt;2021-03-09 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">Contents share api lets an application share time related data with peers. The shared data could be anything but 1KBytes limited size.</summary></entry><entry><title type="html">Terminology</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-terminology/" rel="alternate" type="text/html" title="Terminology" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-terminology</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-terminology/">&lt;h4 id=&quot;line-planet&quot;&gt;LINE Planet&lt;/h4&gt;
+&lt;p&gt;2021-03-09 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">Contents share api lets an application share time related data with peers. The shared data could be anything but 1KBytes limited size.</summary></entry><entry><title type="html">Terminology</title><link href="https://jngwock.github.io/documents/article/art-terminology/" rel="alternate" type="text/html" title="Terminology" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/article/art-terminology</id><content type="html" xml:base="https://jngwock.github.io/documents/article/art-terminology/">&lt;h4 id=&quot;line-planet&quot;&gt;LINE Planet&lt;/h4&gt;
 &lt;p&gt;&lt;span style=&quot;font-size: 90%; color:#8FBC8F&quot;&gt;
 VoIP platform name. Often LINE Planet is called as LINE Planet cloud.&lt;br /&gt;
 Sometimes this means LINE Planet developers or the team.
@@ -574,7 +574,7 @@ Event means a notification from PlanetKit to an application.
 In the generality of cases, two events are involved when an application calls one PlanetKit API - a local event and a remote event.
 The local event reports the result of the called PlanetKit API, and the remote event informs triggering something by a peer.&lt;br /&gt;
 Event parameters are related data generated by PlanetKit when a event has occured.
-&lt;/span&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="terminology" /><summary type="html">LINE Planet VoIP platform name. Often LINE Planet is called as LINE Planet cloud. Sometimes this means LINE Planet developers or the team.</summary></entry><entry><title type="html">Client Disconnect Reason - kitDisconnectReason</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect/" rel="alternate" type="text/html" title="Client Disconnect Reason - kitDisconnectReason" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-kit-disconnect/">&lt;!-- 
+&lt;/span&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="terminology" /><summary type="html">LINE Planet VoIP platform name. Often LINE Planet is called as LINE Planet cloud. Sometimes this means LINE Planet developers or the team.</summary></entry><entry><title type="html">Client Disconnect Reason - kitDisconnectReason</title><link href="https://jngwock.github.io/documents/api%20specification/api-kit-disconnect/" rel="alternate" type="text/html" title="Client Disconnect Reason - kitDisconnectReason" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/api%20specification/api-kit-disconnect</id><content type="html" xml:base="https://jngwock.github.io/documents/api%20specification/api-kit-disconnect/">&lt;!-- 
 wiki: https://wiki.linecorp.com/display/voip/Disconnect+Reason
 for web: https://wiki.linecorp.com/display/voip/Web+PlanetKit+Disconnect+Reason
 --&gt;
@@ -683,7 +683,7 @@ depends on the following reason codes.&lt;/p&gt;
       &lt;td&gt;NetworkUnavailable&lt;/td&gt;
       &lt;td&gt;Y&lt;/td&gt;
       &lt;td&gt;Y&lt;/td&gt;
-      &lt;td&gt;Network is unavailable to keep a call.&lt;br /&gt; Please refer &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/function/ftn-net-unavail/&quot;&gt;NetworkUnavailableEvent&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Network is unavailable to keep a call.&lt;br /&gt; Please refer &lt;a href=&quot;//documents/function/ftn-net-unavail/&quot;&gt;NetworkUnavailableEvent&lt;/a&gt;&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;InternalError&lt;/td&gt;
@@ -725,7 +725,7 @@ depends on the following reason codes.&lt;/p&gt;
       &lt;td&gt;PushError&lt;/td&gt;
       &lt;td&gt;Y&lt;/td&gt;
       &lt;td&gt;N&lt;/td&gt;
-      &lt;td&gt;LINE Planet GW failed to call &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/api specification/api-server-notify&quot;&gt;Notify&lt;/a&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notify_cb&lt;/code&gt; returned a failure. &lt;br /&gt;Please check AppServer or Notify url.&lt;/td&gt;
+      &lt;td&gt;LINE Planet GW failed to call &lt;a href=&quot;//documents/api specification/api-server-notify&quot;&gt;Notify&lt;/a&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notify_cb&lt;/code&gt; returned a failure. &lt;br /&gt;Please check AppServer or Notify url.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;ServerInternalError&lt;/td&gt;
@@ -773,7 +773,7 @@ depends on the following reason codes.&lt;/p&gt;
       &lt;td&gt;ServiceInvalidID&lt;/td&gt;
       &lt;td&gt;Y&lt;/td&gt;
       &lt;td&gt;Y&lt;/td&gt;
-      &lt;td&gt;Unacceptable character is used in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;service-id&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt;.&lt;br /&gt; Please refer &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/terminology/#service-id&quot;&gt;Terminology&lt;/a&gt;.&lt;/td&gt;
+      &lt;td&gt;Unacceptable character is used in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;service-id&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user-id&lt;/code&gt;.&lt;br /&gt; Please refer &lt;a href=&quot;//documents/article/terminology/#service-id&quot;&gt;Terminology&lt;/a&gt;.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;ServiceMaintenance&lt;/td&gt;
@@ -791,7 +791,7 @@ depends on the following reason codes.&lt;/p&gt;
       &lt;td&gt;ServiceHttpError&lt;/td&gt;
       &lt;td&gt;Y&lt;/td&gt;
       &lt;td&gt;Y&lt;/td&gt;
-      &lt;td&gt;Could not HTTP request.&lt;br /&gt;Please check user network environment.&lt;br /&gt;1. Firewall &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/art-firewall&quot;&gt;Network firewall settings for LINE Planet&lt;/a&gt;&lt;br /&gt;2. Client vaccine program&lt;/td&gt;
+      &lt;td&gt;Could not HTTP request.&lt;br /&gt;Please check user network environment.&lt;br /&gt;1. Firewall &lt;a href=&quot;//documents/article/art-firewall&quot;&gt;Network firewall settings for LINE Planet&lt;/a&gt;&lt;br /&gt;2. Client vaccine program&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;ServiceInternalError&lt;/td&gt;
@@ -827,7 +827,7 @@ depends on the following reason codes.&lt;/p&gt;
 &lt;p&gt;2021-03-04 Add NoPermission and NoMediaPacket case &lt;br /&gt;
 2020-12-11 Modify description about Delcine for conference case&lt;br /&gt;
 2020-11-24 Location movement: Article –&amp;gt; API Specification &lt;br /&gt;
-2020-11-19 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="API Specification" /><category term="kitDisconnectReason" /><summary type="html">PlanetKit provides kitDisconnectReason for an application to get to know the call disconnection reason.</summary></entry><entry><title type="html">Network firewall settings for LINE Planet</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-firewall/" rel="alternate" type="text/html" title="Network firewall settings for LINE Planet" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-firewall</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-firewall/">&lt;p&gt;If an application cannot make it a call or join a conference 
+2020-11-19 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="API Specification" /><category term="kitDisconnectReason" /><summary type="html">PlanetKit provides kitDisconnectReason for an application to get to know the call disconnection reason.</summary></entry><entry><title type="html">Network firewall settings for LINE Planet</title><link href="https://jngwock.github.io/documents/article/art-firewall/" rel="alternate" type="text/html" title="Network firewall settings for LINE Planet" /><published>2021-03-04T00:00:00+09:00</published><updated>2021-03-04T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/article/art-firewall</id><content type="html" xml:base="https://jngwock.github.io/documents/article/art-firewall/">&lt;p&gt;If an application cannot make it a call or join a conference 
 and disconnected with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kitDisconnectReason :: ServiceHttpError&lt;/code&gt;, 
 you should check network connection or network firewall settings.&lt;/p&gt;
 
@@ -905,7 +905,7 @@ WebPlanetKit
 &lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
 &lt;p&gt;2021-03-04 Apply scale up and WebPlanetKit&lt;br /&gt;
 2021-02-05 Apply scale up&lt;br /&gt;
-2020-11-18 The first version&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="kitDisconnectReason" /><summary type="html">If an application cannot make it a call or join a conference and disconnected with kitDisconnectReason :: ServiceHttpError, you should check network connection or network firewall settings.</summary></entry><entry><title type="html">PlanetKit System Requirements</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-sys-spec/" rel="alternate" type="text/html" title="PlanetKit System Requirements" /><published>2021-02-05T00:00:00+09:00</published><updated>2021-02-05T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-sys-spec</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-sys-spec/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+2020-11-18 The first version&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="kitDisconnectReason" /><summary type="html">If an application cannot make it a call or join a conference and disconnected with kitDisconnectReason :: ServiceHttpError, you should check network connection or network firewall settings.</summary></entry><entry><title type="html">PlanetKit System Requirements</title><link href="https://jngwock.github.io/documents/article/art-sys-spec/" rel="alternate" type="text/html" title="PlanetKit System Requirements" /><published>2021-02-05T00:00:00+09:00</published><updated>2021-02-05T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/article/art-sys-spec</id><content type="html" xml:base="https://jngwock.github.io/documents/article/art-sys-spec/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;#1-operating-system-requirements&quot;&gt;1. Operating System Requirements&lt;/a&gt; &lt;br /&gt;
 &lt;a href=&quot;#2-audio-device-requirements&quot;&gt;2. Audio Device Requirements&lt;/a&gt;&lt;br /&gt;
@@ -1342,10 +1342,10 @@ Please note that below tables consider only desktop environments.
 --&gt;
 
 &lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
-&lt;p&gt;2021-02-05 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="PlanetKit" /><category term="iOS" /><category term="Android" /><category term="Windows" /><category term="macOS" /><category term="requirements" /><summary type="html">Contents</summary></entry><entry><title type="html">Presentation - Screen share</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-presentation/" rel="alternate" type="text/html" title="Presentation - Screen share" /><published>2021-01-18T00:00:00+09:00</published><updated>2021-01-18T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-presentation</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/function/ftn-presentation/">&lt;p&gt;Presentation means a presenter shares his or her screen to show a material such as slides to the other call peer(s).&lt;/p&gt;
+&lt;p&gt;2021-02-05 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="PlanetKit" /><category term="iOS" /><category term="Android" /><category term="Windows" /><category term="macOS" /><category term="requirements" /><summary type="html">Contents</summary></entry><entry><title type="html">Presentation - Screen share</title><link href="https://jngwock.github.io/documents/function/ftn-presentation/" rel="alternate" type="text/html" title="Presentation - Screen share" /><published>2021-01-18T00:00:00+09:00</published><updated>2021-01-18T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/function/ftn-presentation</id><content type="html" xml:base="https://jngwock.github.io/documents/function/ftn-presentation/">&lt;p&gt;Presentation means a presenter shares his or her screen to show a material such as slides to the other call peer(s).&lt;/p&gt;
 
 &lt;p&gt;PlanetKit tries HD video to presentation so the clients should to be under good network.
-Please check &lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/art-sys-spec/#4-network-requirements&quot;&gt;Network Requirements&lt;/a&gt; 
+Please check &lt;a href=&quot;//documents/article/art-sys-spec/#4-network-requirements&quot;&gt;Network Requirements&lt;/a&gt; 
 for the detail information.&lt;/p&gt;
 
 &lt;h2 id=&quot;presentation-life-time&quot;&gt;Presentation life time&lt;/h2&gt;
@@ -1390,16 +1390,16 @@ So the application on Windows and macOS should decide which screen will be share
 PlanetKit provides the available screen list for the application. Please check this via sample codes.&lt;/p&gt;
 
 &lt;h2 id=&quot;11-call&quot;&gt;1:1 call&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-1x1-start.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/present-1x1-start.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-1x1-end.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/present-1x1-end.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;group-call&quot;&gt;Group call&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-NxN-start.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/present-NxN-start.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-NxN-end.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/present-NxN-end.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/present-NxN-lj.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/present-NxN-lj.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;reason-to-stop-screen-share&quot;&gt;Reason to stop screen share&lt;/h2&gt;
 &lt;p&gt;When a presenter calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stopMyScreenShare()&lt;/code&gt;, it can add a reason that is defined by application requirements. 
@@ -1408,7 +1408,7 @@ The reason is integer type, so an application should share the definition among 
 If do not use reason field, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evtPeerScreenShareStopped&lt;/code&gt; delivers &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-1&lt;/code&gt; or FALSE value in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasReason&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
-&lt;p&gt;2021-02-05 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">Presentation means a presenter shares his or her screen to show a material such as slides to the other call peer(s).</summary></entry><entry><title type="html">AppServer Role</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-appserver-role/" rel="alternate" type="text/html" title="AppServer Role" /><published>2020-12-29T00:00:00+09:00</published><updated>2020-12-29T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-appserver-role</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/article/art-appserver-role/">&lt;p&gt;To setup a 1:1 call or a group call, 
+&lt;p&gt;2021-02-05 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Function" /><category term="function" /><summary type="html">Presentation means a presenter shares his or her screen to show a material such as slides to the other call peer(s).</summary></entry><entry><title type="html">AppServer Role</title><link href="https://jngwock.github.io/documents/article/art-appserver-role/" rel="alternate" type="text/html" title="AppServer Role" /><published>2020-12-29T00:00:00+09:00</published><updated>2020-12-29T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/article/art-appserver-role</id><content type="html" xml:base="https://jngwock.github.io/documents/article/art-appserver-role/">&lt;p&gt;To setup a 1:1 call or a group call, 
 AppServer should make a callee(or participants) perceive. &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;PlanetKit call requires proper information to communicate, 
@@ -1422,7 +1422,7 @@ so AppServer should to deliver some fields depends on call type.&lt;br /&gt;&lt;
 &lt;h2 id=&quot;11-call---cc_param&quot;&gt;1:1 Call - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cc_param&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;span style=&quot;color:orange&quot;&gt;
 AppServer MUST deliver &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cc_param&lt;/code&gt; to a callee that is copied from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;param&lt;/code&gt; in 
-&lt;a href=&quot;/jungnam-gwock/TestDoc//documents/api specification/api-server-notify&quot;&gt;Notify (notify_cb)&lt;/a&gt;.&lt;br /&gt;
+&lt;a href=&quot;//documents/api specification/api-server-notify&quot;&gt;Notify (notify_cb)&lt;/a&gt;.&lt;br /&gt;
 &lt;/span&gt;&lt;/p&gt;
 
 &lt;table&gt;
@@ -1494,7 +1494,7 @@ GCM/FCM example&lt;/p&gt;
 Just be sure that all participants should share the same service id and conference room id to communicate in the same room.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;An application can share them via the application specific channel without involving handling of 
-&lt;a href=&quot;/jungnam-gwock/TestDoc//documents//api specification/api-server-gcallevt&quot;&gt;Group Call Event (on_gcall_evt_cb)&lt;/a&gt;
+&lt;a href=&quot;//documents//api specification/api-server-gcallevt&quot;&gt;Group Call Event (on_gcall_evt_cb)&lt;/a&gt;
 depends on an application group call setup flow.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;If an application hope to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;on_gcall_evt_cb&lt;/code&gt;, 
@@ -1507,7 +1507,7 @@ the service id and room id can be copied from following fields&lt;/p&gt;
 
 &lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
 &lt;p&gt;2020-12-29 Add description and move location to “Article”&lt;br /&gt;
-2020-08-07 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="requirements" /><summary type="html">To setup a 1:1 call or a group call, AppServer should make a callee(or participants) perceive.</summary></entry><entry><title type="html">Client API Specification</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-client-api/" rel="alternate" type="text/html" title="Client API Specification" /><published>2020-12-09T00:00:00+09:00</published><updated>2020-12-09T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-client-api</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/api%20specification/api-client-api/">&lt;p&gt;Please check the API reference to get to know how to call PlanetKit APIs in detail.&lt;/p&gt;
+2020-08-07 The first version &lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="Article" /><category term="requirements" /><summary type="html">To setup a 1:1 call or a group call, AppServer should make a callee(or participants) perceive.</summary></entry><entry><title type="html">Client API Specification</title><link href="https://jngwock.github.io/documents/api%20specification/api-client-api/" rel="alternate" type="text/html" title="Client API Specification" /><published>2020-12-09T00:00:00+09:00</published><updated>2020-12-09T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/api%20specification/api-client-api</id><content type="html" xml:base="https://jngwock.github.io/documents/api%20specification/api-client-api/">&lt;p&gt;Please check the API reference to get to know how to call PlanetKit APIs in detail.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -1547,12 +1547,12 @@ the service id and room id can be copied from following fields&lt;/p&gt;
 &lt;/table&gt;
 
 &lt;p&gt;Required environment including the minimum supportable OS can be shown in 
-&lt;a href=&quot;/jungnam-gwock/TestDoc//documents/article/art-sys-requirements&quot;&gt;System Requirements&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;//documents/article/art-sys-requirements&quot;&gt;System Requirements&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
 &lt;p&gt;2020-12-31 Move Minimum Supportable OS to System requirements&lt;br /&gt;
 2020-12-09 Add Minimum Supportable OS and Note columns&lt;br /&gt;
-2020-11-24 The First version&lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="API Specification" /><category term="API" /><category term="PlanetKit" /><summary type="html">Please check the API reference to get to know how to call PlanetKit APIs in detail.</summary></entry><entry><title type="html">Information to send push notifications</title><link href="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/sample/sample-push/" rel="alternate" type="text/html" title="Information to send push notifications" /><published>2020-11-30T00:00:00+09:00</published><updated>2020-11-30T00:00:00+09:00</updated><id>https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/sample/sample-push</id><content type="html" xml:base="https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/documents/sample/sample-push/">&lt;h2 id=&quot;common&quot;&gt;Common&lt;/h2&gt;
+2020-11-24 The First version&lt;br /&gt;&lt;/p&gt;</content><author><name>LINE Planet</name></author><category term="documents" /><category term="API Specification" /><category term="API" /><category term="PlanetKit" /><summary type="html">Please check the API reference to get to know how to call PlanetKit APIs in detail.</summary></entry><entry><title type="html">Information to send push notifications</title><link href="https://jngwock.github.io/documents/sample/sample-push/" rel="alternate" type="text/html" title="Information to send push notifications" /><published>2020-11-30T00:00:00+09:00</published><updated>2020-11-30T00:00:00+09:00</updated><id>https://jngwock.github.io/documents/sample/sample-push</id><content type="html" xml:base="https://jngwock.github.io/documents/sample/sample-push/">&lt;h2 id=&quot;common&quot;&gt;Common&lt;/h2&gt;
 
 &lt;p&gt;&lt;span style=&quot;color:yellow&quot;&gt; Service ID &lt;/span&gt;&lt;/p&gt;
 
@@ -1577,7 +1577,7 @@ the service id and room id can be copied from following fields&lt;/p&gt;
     &lt;ol&gt;
       &lt;li&gt;Login to your Firebase console &lt;a href=&quot;https://console.firebase.google.com/&quot;&gt;https://console.firebase.google.com/&lt;/a&gt; and select your Firebase project&lt;/li&gt;
       &lt;li&gt;Go to Setting &amp;gt; Project Setting &amp;gt; Cloud messaging&lt;br /&gt;
-  &lt;img src=&quot;/jungnam-gwock/TestDoc//assets/images/fcm_setting.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;img src=&quot;//assets/images/fcm_setting.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;
 &lt;/ul&gt;

@@ -83,6 +83,12 @@ var store = [{
         "url": "/jungnam-gwock/TestDoc/notice/2021-02-24-WebKit31/",
         "teaser": null
       },{
+        "title": "Update milestone and pre-share PlanetKit 3.2",
+        "excerpt":"Milestone is updated. Pre-share PlanetKit 3.2 features. [Korean] Milestone 이 업데이트 되었습니다. 개발에 참고 부탁 드립니다. Milestone Data session 과 Shared contents 기능에 대해 작성된 문서를 미리 공유 드립니다. 개발에 참고 부탁 드립니다. Data session API 전송이 보장 되는 채널을 제공 합니다. Application 에서는 통화중에 간단한 메시지 전송 혹은 whiteboard...","categories": [],
+        "tags": [],
+        "url": "/jungnam-gwock/TestDoc/notice/2021-03-09-PreKit32/",
+        "teaser": null
+      },{
         "title": "Server Callback: Notify",
         "excerpt":"Notify is always called when caller tried to make a call. Application needs to inform a new call has been made to a callee. The application could use mobile push system(i.2 APNs, FCM) or the others. AppServer must deliver param to the callee. Please see AppServer Requirements. The param key...","categories": ["documents","API Specification"],
         "tags": ["API","notify_cb"],
@@ -293,13 +299,13 @@ var store = [{
         "url": "/jungnam-gwock/TestDoc/documents/article/art-terminology/",
         "teaser": null
       },{
-        "title": "Shared contents API(Draft)",
+        "title": "Shared contents API",
         "excerpt":"Contents share api lets an application share time related data with peers. The shared data could be anything but 1KBytes limited size. Supported service type Minimum SDK version 1:1 call, group call PlanetKit 3.2 for iOS, macOS and Android PlanetKit 3.3 for Windows WebPlanetKit NOT Supported Contents share API Function...","categories": ["documents","Function"],
         "tags": ["function"],
         "url": "/jungnam-gwock/TestDoc/documents/function/ftn-contents-share/",
         "teaser": null
       },{
-        "title": "Data session API(Draft)",
+        "title": "Data session API",
         "excerpt":"LINE Planet provides data session for an application to communicate application data. For example, an application sends or receives text message to implement text chatting during a conference. Note that data session is only available after a call setup is completed or join in a conference. Application must define data...","categories": ["documents","Function"],
         "tags": ["function"],
         "url": "/jungnam-gwock/TestDoc/documents/function/ftn-data-session/",

@@ -1,1 +1,1 @@
-Sitemap: https://pages.oss.navercorp.com/jungnam-gwock/TestDoc/sitemap.xml
+Sitemap: https://jngwock.github.io/sitemap.xml
