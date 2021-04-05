@@ -62,9 +62,7 @@ assumes participants can raise hands at the same time, so multiple participants 
 1) Shared data structure ={`flag`}.<br>
 2) Anyone who wants to talk, call `setSharedContents(flag=TRUE)`<br>
 3) All participants will know who wants to talk via `user-id` in `evtPeerSetSharedContents`.<br>
-4) When a new participant joins, he(or she) will be notified `evtPeerSetSharedContents`s in 4 seconds.
-And only participants eligible for `elapsed-ms-from-last-set` < 3000 msec can 'raise hands'.
-
+4) Only participants eligible for `elapsed-ms-from-last-set` < 3000 msec can 'raise hands'. Consequently, when a new participant joins after 4000msec, he(or she) will be notified `evtPeerSetSharedContents` but not eligible for 'raise hands'.
 
 <span style="font-size: 150%; color:lightblue">
 The second case
