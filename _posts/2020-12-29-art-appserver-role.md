@@ -4,14 +4,14 @@ categories:
   - documents
   - Article
 tags:
-  - requirements 
+  - requirements
 ---
 
-To setup a 1:1 call or a group call, 
-AppServer should make a callee(or participants) perceive. <br> 
+To setup a 1:1 call or a group call,
+AppServer should make a callee (or participants) perceive a call coming in. <br>
 
-PlanetKit call requires proper information to communicate, 
-so AppServer should to deliver some fields depends on call type.<br> 
+PlanetKit call requires proper information to communicate,
+so AppServer should to deliver some fields, depending on call type.<br>
 
 * [1:1 Call](#11-call)
 * [Group Call](#group-call)
@@ -19,7 +19,7 @@ so AppServer should to deliver some fields depends on call type.<br>
 
 ## 1:1 Call - `cc_param`
 <span style="color:orange">
-AppServer MUST deliver `cc_param` to a callee that is copied from `param` in 
+AppServer MUST deliver to a callee `cc_param`, which is copied from `param` in
 [Notify (notify_cb)]({{site.baseurl}}/documents/api specification/api-server-notify).<br>
 </span>
 
@@ -28,7 +28,7 @@ AppServer MUST deliver `cc_param` to a callee that is copied from `param` in
 | `param` | String | `cc_param` |
 
 <br>
-You can use mobile push system to accomplish this as almost mobile apps do.<br>
+You can use a mobile push system to accomplish this as almost mobile apps do.<br>
 <br>
 Here we assume you use APNs and FCM push system.<br>
 
@@ -41,11 +41,11 @@ Here we assume you use APNs and FCM push system.<br>
 
 {% endhighlight %}
 
-Also you can define application's push data using other fields from `notify_cb` 
+Also you can define application's push data using other fields from `notify_cb`
 to handle application requirements such as showing caller's information or caller's call type.<br>
 <br>
-Here show examples.<br>
-"app_" prefix means defined by application which means they are not required by PlanetKit call setup.<br>
+Find the following examples.<br>
+"app_" prefix means they are defined by application and they are not required by PlanetKit call setup.<br>
 
 APNs example
 {% highlight json %}
@@ -79,15 +79,15 @@ GCM/FCM example
 {% endhighlight %}
 
 ## Group Call
-Unlike 1:1 call, there is no requirements for AppServer to setup a group call.<br>
-Just be sure that all participants should share the same service id and conference room id to communicate in the same room.<br>
+Unlike 1:1 calls, there is no requirement for AppServer to setup a group call.<br>
+Ensure that all participants should share the same service id and conference room id to communicate in the same room.<br>
 
-An application can share them via the application specific channel without involving handling of 
-[Group Call Event (on_gcall_evt_cb)]({{site.baseurl}}/documents//api specification/api-server-gcallevt)
-depends on an application group call setup flow.<br>
+Applications can share them via the application specific channel without involving handling of
+[Group Call Event (on_gcall_evt_cb)]({{site.baseurl}}/documents//api specification/api-server-gcallevt),
+depending on the application group call setup flow.<br>
 
-If an application hope to use `on_gcall_evt_cb`, 
-the service id and room id can be copied from following fields
+If an application hope to use `on_gcall_evt_cb`,
+the service id and room id can be copied from the following fields.
 
 * service id: `svc_id`
 * room id: `id`

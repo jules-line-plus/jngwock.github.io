@@ -9,21 +9,21 @@ tags:
 
 #### LINE Planet
 <span style="font-size: 90%; color:#8FBC8F">
-VoIP platform name. Often LINE Planet is called as LINE Planet cloud.<br>
+LINE's VoIP platform. Often LINE Planet refers to LINE Planet cloud.<br>
 Sometimes this means LINE Planet developers or the team.
 </span>
 
 
 #### Application
 <span style="font-size: 90%; color:#8FBC8F">
-A client application and server application that uses LINE Planet cloud.<br>
+A client application and server application that use LINE Planet cloud.<br>
 Sometimes this means service developers or a team.
 </span>
 
 #### SLA
 <span style="font-size: 90%; color:#8FBC8F">
 Service Layer Agreement. <br>
-An application requires SLA key to integration LINE Planet.<br>
+An application requires the SLA key to integrate LINE Planet.<br>
 </span>
 
 #### PlanetKit
@@ -34,10 +34,10 @@ Integrating LINE Planet means integrating PlanetKit.
 
 #### Caller, Initiator
 <span style="font-size: 90%; color:#8FBC8F">
-Terminal device who makes a new call or end user(human).
+Terminal device that makes a new call or end user. <!--human은 빼도 되지 않을까요? ^^;;;-->
 </span>
 
-#### Callee, Responder 
+#### Callee, Responder
 <span style="font-size: 90%; color:#8FBC8F">
 Counterpart of the caller. Caller may want to call with a Callee.
 </span>
@@ -49,10 +49,10 @@ Client application integrating PlanetKit SDK.
 
 #### AppServer
 <span style="font-size: 90%; color:#8FBC8F">
-Server application that has connectivity to LINE Planet server.
+Server application that has connectivity to LINE Planet servers.
 </span>
 
-#### Session 
+#### Session
 <span style="font-size: 90%; color:#8FBC8F">
 A call identification.
 </span>
@@ -60,33 +60,33 @@ A call identification.
 #### Service ID
 <span style="font-size: 90%; color:#8FBC8F">
 Planet can identify services with Service ID.<br>
-All application must define its own Service ID with below acceptable character set.<br>
+All applications must define its own Service ID, using the following character set.<br>
 </span>
 <span style="font-size: 90%; color:orange">
-&nbsp;&nbsp;&nbsp;&nbsp;letters[`a-zA-Z`], digits[`0-9`], hyphens("-") and periods(".")<br>
-&nbsp;&nbsp;&nbsp;&nbsp;length limitation: 64 bytes
+&nbsp;&nbsp;&nbsp;&nbsp;letters[`a-z, A-Z`], digits[`0-9`], hyphens("-") and periods(".")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Maximum length: 64 bytes
 </span>
 
 #### User ID
 <span style="font-size: 90%; color:#8FBC8F">
-The service subscriber identification. All User IDs belong to one Service ID must be unique.<br>
-The User ID accepted by LINE Planet must be defined by below character set.<br>
+Service subscriber identification. All User IDs belonging to one Service ID must be unique.<br>
+The User ID accepted by LINE Planet must be defined with the following character set.<br>
 </span>
 <span style="font-size: 90%; color:orange">
-&nbsp;&nbsp;&nbsp;&nbsp;letters[`a-zA-Z`], digits[`0-9`], hyphens("-") and underscores("`_`")<br>
-&nbsp;&nbsp;&nbsp;&nbsp;length limitation: 64 bytes
+&nbsp;&nbsp;&nbsp;&nbsp;letters[`a-z, A-Z`], digits[`0-9`], hyphens("-") and underscores("`_`")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Maximum length: 64 bytes
 </span>
 
 #### Room ID
 <span style="font-size: 90%; color:#8FBC8F">
-Group call instance identification. Application must join with the same room id to communication each other.<br>
-The accepted character set is same with the above User ID.
+Group call instance identification. Applications must join with the same room id to communicate with each other.<br>
+The accepted character set is same with that of User ID as shown above.
 </span>
 
 
 #### Cellular network
 <span style="font-size: 90%; color:#8FBC8F">
-Mobile network. For example 2G, 3G, 4G or 5G.
+Mobile network. For example, 2G, 3G, 4G or 5G.
 </span>
 
 
@@ -98,22 +98,21 @@ General phone call through mobile network.
 
 #### PlanetKit call, LINE Planet call
 <span style="font-size: 90%; color:#8FBC8F">
-VoIP call through PlanetKit. This call may use Wifi network or data of mobile network.<br>
-The data plan that is subscribing by user could affect the PlanetKit call quality.
+VoIP call through PlanetKit. This call may use a Wifi network or data of mobile network.<br>
+The data plan that users subscribed to could affect the quality of PlanetKit calls.
 </span>
 
 #### Confernce, Group call and room
 <span style="font-size: 90%; color:#8FBC8F">
-We don't distinguish above 3 words.
-When 3 or more users hope to communicate, they can hold conferenc or group call.
-And creating a conference or group call means that a room is creating.
+We interchangeably use these three 3 terms.
+When 3 or more users hope to communicate, they can hold a conference or group call.
+And, creating a conference or group call means that a room is created.
 </span>
 
 #### `evt` prefix, Event and Event parameters
 <span style="font-size: 90%; color:#8FBC8F">
 Event means a notification from PlanetKit to an application.
 In the generality of cases, two events are involved when an application calls one PlanetKit API - a local event and a remote event.
-The local event reports the result of the called PlanetKit API, and the remote event informs triggering something by a peer.<br>
-Event parameters are related data generated by PlanetKit when a event has occured.
+The local event reports the result of the called PlanetKit API, and the remote event informs what has been triggered by its peer.<br>
+Event parameters are related data generated by PlanetKit when a event has occurred.
 </span>
-
