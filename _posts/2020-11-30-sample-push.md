@@ -20,7 +20,7 @@ tags:
     2.  Generate .p12 file from the certificate
     3.  Send the .p12 file and its password to us
 
-<span style="color:yellow"> Please make sure that the push certificate MUST be the same with the build certificate.</span>
+<span style="color:yellow"> Please make sure that the push certificate MUST be same as the build certificate.</span>
 
 ## Android and Web: FCM
 

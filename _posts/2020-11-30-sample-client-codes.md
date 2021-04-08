@@ -7,13 +7,13 @@ tags:
   - Sample
 ---
 
-LINE Planet provides sample code to 
+LINE Planet provides sample code to
 * Test LINE Planet in a short time
 * Show example codes of using LINE Planet
 
-## Supportable push system
+## Supported push systems
 
-Application need to understand how to receive the notification to a callee.
+Applications need to understand how to receive a notification to a callee.
 It depends on the OS system. The sample client provides various options.
 
 | | Push |
@@ -24,9 +24,9 @@ It depends on the OS system. The sample client provides various options.
 | Windows | long polling |
 | Web | FCM |
 
-* <span style="color:orange">long polling</span> means notfications are generated from Sample AppServer(sample server).
+* <span style="color:orange">long polling</span> means notifications are generated from Sample AppServer(sample server).
 
-> Note: Please you should give push information if you choose to use the external push system.<br>
+> Note: You should give push information if you choose to use an external push system.<br>
 > Please check here: [Information to send push notifications]({{site.baseurl}}/documents/sample/sample-push/).
 
 ## Code
@@ -38,7 +38,7 @@ It depends on the OS system. The sample client provides various options.
 
 Please feel free to ask us if you have any questions.
 
-FAQs may help you faster.
+You might find answers to your questions in FAQs faster.
 
 
 ## History

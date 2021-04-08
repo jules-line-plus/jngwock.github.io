@@ -14,7 +14,7 @@ Development Guide
 | Environment | as_base_url |
 | --- | --- |
 | Evaluation |  <span style="font-size: 100%; color:orange"> https://voipnx-as.line-apps-rc.com </span>|
-| Real | <span style="font-size: 100%; color:orange"> https://voipnx-as.line-apps.com </span> | 
+| Real | <span style="font-size: 100%; color:orange"> https://voipnx-as.line-apps.com </span> |
 
 
 ### Naming Rule
@@ -83,9 +83,9 @@ API for Client
 Accept
 * application/json (UTF-8)
 
-### Register device 
-To register device
-* If you want multi-device simulation, call `register_device` with different `app_type`
+### Register device
+To register a device
+* If you want multi-device simulation, call `register_device` with different `app_type`.
   i.e) iPhone + android
 
 > Method & URI
@@ -122,9 +122,9 @@ curl --location --request GET 'http://voipnx-as.line-apps-beta.com:10712/v1/regi
 {% endhighlight %}
 
 
-### Update notification token 
+### Update notification token
 
-To update device notification token(a.k.a device token)
+To update device notification token (a.k.a device token)
 
 > Method & URI
 
@@ -143,7 +143,7 @@ To update device notification token(a.k.a device token)
 | notification_token | String | Y | platform specific notification token |
 
 | apns_server | String | N | effective only if notification_type is apns.<br> ***development*** (a.k.a sandbox) <br> ***production***<br> ref. [APNs Connections](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingwithAPNs.html#//apple_ref/doc/uid/TP40008194-CH11-SW1)|
- 
+
 > Response
 
 * N/A
@@ -152,7 +152,7 @@ To update device notification token(a.k.a device token)
 {% highlight ruby lineos %}
 curl --location --request GET 'http://voipnx-as.line-apps-beta.com:10712/v1/update_notification_token?user_id=to&service_id=voip.com&notification_type=apnsvoip&notification_token=notification_token&apns_server=development&app_type=IOS&app_ver=1.0.0' \
 --header 'Accept: application/json'
- 
+
 {
     "status": "success",
     "data": {},
@@ -163,8 +163,8 @@ curl --location --request GET 'http://voipnx-as.line-apps-beta.com:10712/v1/upda
 ### Get notification (***Long-Polling***)
 
 If platform-specific notifications (APN, FCM, etc.) are not available, use http long polling method.
-* When caller receives error code, re-run polling
-* Do not call API too much within a short time
+* When a caller receives an error code, re-run polling.
+* Do not call APIs too often within a short time.
 
 > Method & URI
 
@@ -187,8 +187,8 @@ If platform-specific notifications (APN, FCM, etc.) are not available, use http 
 {% highlight ruby lineos %}
 curl --location --request GET 'http://voipnx-as.line-apps-beta.com:10712/v1/notification/lp?service_id=planetkit&user_id=0252' \
 --header 'Accept: application/json'
- 
- 
+
+
 {
   "status": "success",
   "data": {
@@ -203,4 +203,3 @@ curl --location --request GET 'http://voipnx-as.line-apps-beta.com:10712/v1/noti
   "timestamp": 1586334096360
 }
 {% endhighlight %}
-

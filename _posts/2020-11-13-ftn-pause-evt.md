@@ -4,13 +4,13 @@ categories:
   - documents
   - Function
 tags:
-  - Function 
+  - Function
 ---
 
 LINE Planet releases `evtPeerUpdated` event when a peer pauses its video stream.
 
-The video stream would be paused by various reasons such as 
-by use selection or by disabling a camera device.
+The video stream can be paused for various reasons such as
+user selection or disabling a camera device.
 
 `pauseReason` lets an application know the pause reason.
 
@@ -23,7 +23,6 @@ by use selection or by disabling a camera device.
 | ---- | ---- |
 | ByUser | When a peer calls `pauseVideo()` |
 | ByInterrupt | When the app enters background status |
-| EnableVideoResponse | Only for 1:1 call. Please refer [Enable video]({{site.baseurl}}/documents/function/ftn-atov/#11-call) 
+| EnableVideoResponse | Only for 1:1 call. Please refer to [Enable video]({{site.baseurl}}/documents/function/ftn-atov/#11-call)
 | CameraInactive | When the camera device is being disabled |
-| Hold | When a peer calls hold(). Pleser refer [Hold]({{site.baseurl}}/documents/function/ftn-hold/) |
-
+| Hold | When a peer calls hold(). Please refer to [Hold]({{site.baseurl}}/documents/function/ftn-hold/) |

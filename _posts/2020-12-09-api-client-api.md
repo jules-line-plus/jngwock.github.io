@@ -8,7 +8,7 @@ tags:
   - PlanetKit
 ---
 
-Please check the API reference to get to know how to call PlanetKit APIs in detail.
+Please check the API reference for more information on how to call PlanetKit APIs.
 
 | Platform | API Reference | Note |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ Please check the API reference to get to know how to call PlanetKit APIs in deta
 | Web | [WebPlanetKit API Reference](https://pages.oss.navercorp.com/PlanetKit/sample-web/) | Please check API Reference to show supported browser information.  |
 
 
-Required environment including the minimum supportable OS can be shown in 
+Required environment including the minimum supportable OS can be shown in
 [System Requirements]({{site.baseurl}}/documents/article/art-sys-requirements).
 
 ## History

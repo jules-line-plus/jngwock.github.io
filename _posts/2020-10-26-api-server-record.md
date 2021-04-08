@@ -5,17 +5,17 @@ categories:
   - API Specification
 tags:
   - API
-  - on_call_rec_cb 
+  - on_call_rec_cb
 ---
 
-If a specific 1:1 call is requested to be recorded, the voice and video streams are recorded and uploaded to OBS server.<br>
+If a specific 1:1 call is requested to be recorded, the voice and video streams are recorded and uploaded to the OBS server.<br>
 
 LINE Planet will call Recording Status callback when
-1. a recording is started and 
+1. recording starts and
 1. uploading the streams of the ended call is completed.<br>
 
 
-AppServer can download files with parameters informed by Recording Complete callback by accessing OBS server.<br>
+AppServer can access the OBS server and download files with parameters informed by Recording Complete callback.<br>
 <br>
 The default recorded media quality is:
 
@@ -27,12 +27,12 @@ The default recorded media quality is:
 
 
 
-> Please note that this callback is not called once always.
-> By an internal maintenance issue, calling multiple times is available.<br>
-> But they have same `sid` value and different `recording_start_time` value.
+> Please note that this callback is not called just once.
+> Due to an internal maintenance issue,it can be called many times.<br>
+> But, they have the same `sid` value and different `recording_start_time` value.
 
 ### Method & URI
-* Method: POST 
+* Method: POST
 * URI: ${on_call_rec_cb_url}
 
 ### Related HTTP headers
@@ -41,18 +41,18 @@ The default recorded media quality is:
 | --- | --- |
 |Content-Type | application/json |
 
-### Body contents 
+### Body contents
 
-Belows are located in a body field as Json type.
+Belows are located in the body field as Json type.
 
 | Parameter | Type | Nullable | Description | Example |
 | --- | --- | --- | --- | --- |
-| sid | String | N | Session ID.<br> You can identify a call using a sid.<br> Fixed 36 bytes size without null.|6364e8b3-bdac-436e-9631-0bce2498ce0c|
+| sid | String | N | Session ID.<br> You can identify a call using a sid.<br> Fixed size of 36 bytes without null.|6364e8b3-bdac-436e-9631-0bce2498ce0c|
 | stid | String | N | Application data delivered from `makeCall()` in PlanetKit SDK | generated-by-application |
-| from_service_id | String | N | Caller service ID | planetkit | 
+| from_service_id | String | N | Caller service ID | planetkit |
 | from_user_id | String | N | Caller user ID | caller.id |
 | to_service_id	| String | N | Callee service ID | planetkit |
-| to_user_id | String | N | Callee user ID | callee.id | 
+| to_user_id | String | N | Callee user ID | callee.id |
 | recording_start_time | Long | N | Recording start (seconds)| 1597744702514 |
 | recording_status | String | N | IN_PROGRESS<br> COMPLETED<br> ABSENT<br> FAILED| COMPLETED |
 | error_code| String | Y | Exists when `recording_status` is ABSENT or FAILED | 500 |
@@ -69,12 +69,12 @@ Belows are located in a body field as Json type.
 
 | recording_status | Description |
 | --- | --- |
-| IN_PROGRESS | Called when a recording is started |
-| COMPLETED | Called when a recording is completed |
+| IN_PROGRESS | Called when recording starts |
+| COMPLETED | Called when recording is completed |
 | ABSENT | There is no available recording file for this call |
-| FAILED | Recording is failed |
+| FAILED | Recording failed |
 
-The `error_code` exists only if `recording_status` is ABSENT or FAILED. 
+The `error_code` exists only if `recording_status` is ABSENT or FAILED.
 
 | error_code| Description |
 | --- | --- |
@@ -86,7 +86,7 @@ The `error_code` exists only if `recording_status` is ABSENT or FAILED.
 
 {% highlight http lineos %}
 
-POST 
+POST
 Content-Type: application/json
 
 {
@@ -142,7 +142,7 @@ Content-Type: application/json
 Please check OBS download API documentation.
 * [OBS download API via OBS](https://wiki.linecorp.com/display/LINEDOCS/OBS+API+-+Download+via+OBS)
 * serviceCode: <span style="color:yellow">voipnext</span>
-* spaceId: Please contact LINE Planet team. 
+* spaceId: Please contact LINE Planet team.
 
 ### Required HTTP header  
 

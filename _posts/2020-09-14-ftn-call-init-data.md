@@ -7,14 +7,14 @@ tags:
   - function
 ---
 
-<span style="font-size: 150%; color:lightblue">In 1:1 call</span>, 
-a caller can send limited size data to a callee 
+<span style="font-size: 150%; color:lightblue">In 1:1 calls</span>,
+a caller can send a limited size of data to a callee
 <span style="font-size: 150%; color:lightblue">before the callee accepts the call</span>.
 
-This `Call Init Data` is set by a caller in `makeCall` API as one of arguments. 
-And the value is delivered to the callee in the `evtVerified` event.
+This `Call Init Data` is set by a caller in the `makeCall` API as one of arguments.
+And, the value is delivered to the callee in the `evtVerified` event.
 
-Please check [1:1 call flow]({{site.baseurl}}/documents/article/flow-call/) to get to know `Call Init Data` flow.
+Please check [1:1 call flow]({{site.baseurl}}/documents/article/flow-call/) to understand more about the `Call Init Data` flow.
 <br><br><br>
 ### Call Init Data vs Service Ticket ID(stid)
 

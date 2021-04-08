@@ -10,31 +10,31 @@ tags:
 ---
 
 Application domain includes AppClient and AppServer. <br>
-PlanetKit and LINE Planet Cloud belong to LINE Planet domain.
+PlanetKit and LINE Planet Cloud belong to the LINE Planet domain.
 
 
 ### Join
 
-LINE Planet conference join flow can be shown:
+Flow for joining a LINE Planet conference is as follows:
 
 ![]({{ site.baseurl }}/assets/images/conf-join.png)
 
 <span style="font-size: 120%; color:yellow"> To join a room </span>,<br>
-group call participants must know room id before joining the room.
+group call participants must know the room id to join the conference.
 
 ### Request Peer Video
 
 Mixed audio will be automatically streamed when a participant joins.<br>
-However video stream requires to call `requestPeerVideo()` API with the proper user id and service id.
+However, video stream requires to call the `requestPeerVideo()` API with the proper user id and service id.
 
 ![]({{ site.baseurl }}/assets/images/conf-req-vid.png)
 
-> Depends on OS UI Framework
-> You may need to additional API call to render a peer video stream.
-> Please check [PlanetKit API specifications]({{site.baseurl}}/documents/api specification/api-client-api/). 
+> Depend on OS UI Framework
+> You may need an additional API call to render a peer video stream.
+> Please check [PlanetKit API specifications]({{site.baseurl}}/documents/api specification/api-client-api/).
 
 ### Leave
-When a participant leaves, the flow can be shown:
+Find the following flow for when a participant leaves:
 
 ![]({{ site.baseurl }}/assets/images/conf-leave.png)
 
